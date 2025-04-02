@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import LoadingState from "../components/LoadingState";
 
 type MatchResult = {
   job_description: {
@@ -22,6 +23,8 @@ export default function Results() {
   const [results, setResults] = useState<MatchResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [filterScore, setFilterScore] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -39,17 +42,19 @@ export default function Results() {
     setLoading(false);
   }, [router]);
 
-  // Skip rendering until after mount
+  const sortedAndFilteredResults = results?.rankings
+    .filter(cv => cv.similarity_score >= filterScore)
+    .sort((a, b) => {
+      const comparison = b.similarity_score - a.similarity_score;
+      return sortOrder === 'desc' ? comparison : -comparison;
+    });
+
   if (!mounted) {
-    return null;
+    return <LoadingState message="Loading..." />;
   }
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+    return <LoadingState message="Loading results..." />;
   }
 
   if (!results) {
@@ -70,6 +75,32 @@ export default function Results() {
       </div>
     );
   }
+
+  const renderControls = () => (
+    <div className="mb-6 flex justify-between items-center">
+      <div className="flex items-center space-x-4">
+        <label className="text-sm text-gray-600">
+          Minimum Score:
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value={filterScore}
+            onChange={(e) => setFilterScore(Number(e.target.value))}
+            className="ml-2"
+          />
+          <span className="ml-2">{(filterScore * 100).toFixed(0)}%</span>
+        </label>
+      </div>
+      <button
+        onClick={() => setSortOrder(order => order === 'desc' ? 'asc' : 'desc')}
+        className="flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
+      >
+        Sort {sortOrder === 'desc' ? '↓' : '↑'}
+      </button>
+    </div>
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -98,12 +129,14 @@ export default function Results() {
         </div>
       </div>
 
+      {renderControls()}
+
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
         Ranked CV Matches
       </h2>
 
       <div className="space-y-6">
-        {results.rankings.map((cv, index) => (
+        {sortedAndFilteredResults?.map((cv, index) => (
           <div 
             key={index} 
             className="bg-white shadow overflow-hidden sm:rounded-lg"

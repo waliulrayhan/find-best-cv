@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import LoadingState from "../components/LoadingState";
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB limit
 
 export default function Upload() {
   const router = useRouter();
@@ -18,18 +21,54 @@ export default function Upload() {
 
   // Skip rendering until after mount
   if (!mounted) {
-    return null;
+    return <LoadingState message="Loading..." />;
   }
+
+  const validateFile = (file: File) => {
+    if (file.size > MAX_FILE_SIZE) {
+      return `File ${file.name} is too large. Maximum size is 10MB.`;
+    }
+    
+    const validTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    
+    if (!validTypes.includes(file.type)) {
+      return `File ${file.name} is not a valid format. Please use PDF or DOCX.`;
+    }
+    
+    return null;
+  };
 
   const handleJobFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setJobFile(e.target.files[0]);
+      const file = e.target.files[0];
+      const error = validateFile(file);
+      if (error) {
+        setError(error);
+        return;
+      }
+      setJobFile(file);
+      setError(null);
     }
   };
 
   const handleCvFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setCvFiles(Array.from(e.target.files));
+      const files = Array.from(e.target.files);
+      
+      // Validate each file
+      for (const file of files) {
+        const error = validateFile(file);
+        if (error) {
+          setError(error);
+          return;
+        }
+      }
+      
+      setCvFiles(files);
+      setError(null);
     }
   };
 
