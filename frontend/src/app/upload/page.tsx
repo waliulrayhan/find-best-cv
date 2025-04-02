@@ -94,7 +94,7 @@ export default function Upload() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white text-center mb-8">
+        <h1 className="text-3xl font-extrabold text-gray-900 text-center mb-8">
           Upload Files
         </h1>
         
@@ -114,24 +114,24 @@ export default function Upload() {
         )}
         
         <form onSubmit={handleSubmit} className="space-y-8">
-          <div className="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
                 Job Description
               </h3>
-              <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-300">
+              <div className="mt-2 max-w-xl text-sm text-gray-500">
                 <p>Upload your job description file (PDF or DOCX)</p>
               </div>
               <div className="mt-5">
                 <div className="flex items-center justify-center w-full">
-                  <label className="flex flex-col w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <label className="flex flex-col w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
                     <div className="flex flex-col items-center justify-center pt-7">
                       {jobFile ? (
                         <>
                           <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                           </svg>
-                          <p className="pt-1 text-sm tracking-wider text-gray-700 dark:text-gray-200">
+                          <p className="pt-1 text-sm tracking-wider text-gray-700">
                             {jobFile.name}
                           </p>
                         </>
@@ -158,24 +158,24 @@ export default function Upload() {
             </div>
           </div>
           
-          <div className="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
                 CV Files
               </h3>
-              <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-300">
+              <div className="mt-2 max-w-xl text-sm text-gray-500">
                 <p>Upload multiple CV files (PDF or DOCX)</p>
               </div>
               <div className="mt-5">
                 <div className="flex items-center justify-center w-full">
-                  <label className="flex flex-col w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <label className="flex flex-col w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
                     <div className="flex flex-col items-center justify-center pt-7">
                       {cvFiles.length > 0 ? (
                         <>
                           <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                           </svg>
-                          <p className="pt-1 text-sm tracking-wider text-gray-700 dark:text-gray-200">
+                          <p className="pt-1 text-sm tracking-wider text-gray-700">
                             {cvFiles.length} file(s) selected
                           </p>
                         </>
@@ -202,11 +202,11 @@ export default function Upload() {
               </div>
               {cvFiles.length > 0 && (
                 <div className="mt-4">
-                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Selected files:</h4>
-                  <ul className="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
+                  <h4 className="text-sm font-medium text-gray-700">Selected files:</h4>
+                  <ul className="mt-2 divide-y divide-gray-200">
                     {cvFiles.map((file, index) => (
                       <li key={index} className="py-2 flex">
-                        <span className="text-sm text-gray-600 dark:text-gray-400">{file.name}</span>
+                        <span className="text-sm text-gray-600">{file.name}</span>
                       </li>
                     ))}
                   </ul>

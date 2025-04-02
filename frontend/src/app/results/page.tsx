@@ -56,8 +56,8 @@ export default function Results() {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">No Results Found</h1>
-          <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
+          <h1 className="text-3xl font-extrabold text-gray-900">No Results Found</h1>
+          <p className="mt-4 text-lg text-gray-500">
             Please upload files to get matching results.
           </p>
           <button
@@ -74,31 +74,31 @@ export default function Results() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+        <h1 className="text-3xl font-extrabold text-gray-900">
           CV Matching Results
         </h1>
-        <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
+        <p className="mt-4 text-lg text-gray-500">
           We analyzed {results.total_cvs_processed} CVs against your job description
         </p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-10">
+      <div className="bg-white shadow overflow-hidden sm:rounded-lg mb-10">
         <div className="px-4 py-5 sm:px-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
             Job Description
           </h3>
-          <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-300">
+          <p className="mt-1 max-w-2xl text-sm text-gray-500">
             {results.job_description.filename}
           </p>
         </div>
-        <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-5 sm:px-6">
-          <p className="text-sm text-gray-500 dark:text-gray-300">
+        <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+          <p className="text-sm text-gray-500">
             {results.job_description.preview}
           </p>
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
         Ranked CV Matches
       </h2>
 
@@ -106,16 +106,16 @@ export default function Results() {
         {results.rankings.map((cv, index) => (
           <div 
             key={index} 
-            className="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg"
+            className="bg-white shadow overflow-hidden sm:rounded-lg"
           >
             <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
               <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">
                   {cv.filename}
                 </h3>
                 <div className="mt-2 flex items-center">
                   <div className="flex items-center">
-                    <span className="text-sm font-medium text-gray-500 dark:text-gray-300 mr-2">
+                    <span className="text-sm font-medium text-gray-500 mr-2">
                       Match Score:
                     </span>
                     <div className="relative w-32 h-4 bg-gray-200 rounded-full overflow-hidden">
@@ -124,7 +124,7 @@ export default function Results() {
                         style={{ width: `${cv.similarity_score * 100}%` }}
                       ></div>
                     </div>
-                    <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                    <span className="ml-2 text-sm font-medium text-gray-700">
                       {(cv.similarity_score * 100).toFixed(0)}%
                     </span>
                   </div>
@@ -144,16 +144,16 @@ export default function Results() {
                 </span>
               </div>
             </div>
-            <div className="border-t border-gray-200 dark:border-gray-700">
+            <div className="border-t border-gray-200">
               <div className="px-4 py-5 sm:p-6">
-                <h4 className="text-sm font-medium text-gray-500 dark:text-gray-300 mb-2">
+                <h4 className="text-sm font-medium text-gray-500 mb-2">
                   CV Preview
                 </h4>
-                <p className="text-sm text-gray-700 dark:text-gray-200 mb-4">
+                <p className="text-sm text-gray-700 mb-4">
                   {cv.cv_preview}
                 </p>
                 
-                <h4 className="text-sm font-medium text-gray-500 dark:text-gray-300 mb-2">
+                <h4 className="text-sm font-medium text-gray-500 mb-2">
                   Matched Keywords
                 </h4>
                 <div className="flex flex-wrap gap-2">
