@@ -3,6 +3,8 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 # Ensure NLTK resources are downloaded
 nltk.download('punkt', quiet=True)
@@ -74,3 +76,34 @@ def vectorize_text(text: str, fit_vectorizer: bool = False):
     )
     
     return tfidf_list
+
+def compute_similarity(job_description: str, cv_texts: list[str]) -> list[tuple[int, float]]:
+    """
+    Compute cosine similarity between job description and multiple CVs
+    
+    Args:
+        job_description: The job description text
+        cv_texts: List of CV texts to compare against
+        
+    Returns:
+        List of tuples (cv_index, similarity_score) sorted by score in descending order
+    """
+    # Preprocess all texts
+    processed_jd = preprocess_text(job_description)
+    processed_cvs = [preprocess_text(cv) for cv in cv_texts]
+    
+    # Combine all texts for vectorization
+    all_texts = [processed_jd] + processed_cvs
+    
+    # Fit and transform all texts
+    tfidf_matrix = tfidf_vectorizer.fit_transform(all_texts)
+    
+    # Compute cosine similarity between job description (first document)
+    # and all CVs (remaining documents)
+    similarities = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:]).flatten()
+    
+    # Create list of (index, score) tuples and sort by score
+    ranked_indices = [(i, float(score)) for i, score in enumerate(similarities)]
+    ranked_indices.sort(key=lambda x: x[1], reverse=True)
+    
+    return ranked_indices
