@@ -103,7 +103,7 @@ export default function ContactPage() {
                 </motion.span>
                 Contact Us
               </h1>
-              <p className="text-white/90 max-w-lg">We'd love to hear from you. Let us know how we can help with your recruitment needs.</p>
+              <p className="text-white/90 max-w-lg">We&apos;d love to hear from you. Let us know how we can help with your recruitment needs.</p>
             </div>
           </div>
           

@@ -128,7 +128,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold text-[#374151] mb-3">Enter Job Description</h3>
               <p className="text-[#374151]/80">
-                Upload or enter your job description to define what you're looking for in candidates.
+                Upload or enter your job description to define what you&apos;re looking for in candidates.
               </p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function Home() {
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
             <p className="text-[#374151]/80 italic">
-              "This tool has revolutionized our hiring process. We've reduced our screening time by 70% and found better candidates."
+              &quot;This tool has revolutionized our hiring process. We&apos;ve reduced our screening time by 70% and found better candidates.&quot;
             </p>
           </div>
 
@@ -189,7 +189,7 @@ export default function Home() {
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
             <p className="text-[#374151]/80 italic">
-              "The AI matching is incredibly accurate. We've made better hiring decisions and saved countless hours in the process."
+              &quot;The AI matching is incredibly accurate. We&apos;ve made better hiring decisions and saved countless hours in the process.&quot;
             </p>
           </div>
         </div>

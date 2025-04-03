@@ -129,10 +129,10 @@ export default function TermsPage() {
                 Your Content
               </h2>
               <p className="text-[#374151] mb-4">
-                In these terms and conditions, "Your Content" shall mean any audio, video, text, images or other material you choose to display on this website. By displaying Your Content, you grant CV Matcher a non-exclusive, worldwide, irrevocable, royalty-free, sublicensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.
+                In these terms and conditions, &apos;Your Content&apos; shall mean any audio, video, text, images or other material you choose to display on this website. By displaying Your Content, you grant CV Matcher a non-exclusive, worldwide, irrevocable, royalty-free, sublicensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.
               </p>
               <p className="text-[#374151] mb-4">
-                Your Content must be your own and must not be infringing on any third party's rights. CV Matcher reserves the right to remove any of Your Content from this website at any time without notice.
+                Your Content must be your own and must not be infringing on any third party&apos;s rights. CV Matcher reserves the right to remove any of Your Content from this website at any time without notice.
               </p>
             </motion.div>
             
@@ -147,7 +147,7 @@ export default function TermsPage() {
               </h2>
               <div className="bg-[#F8FAFC] p-4 rounded-lg border-l-2 border-[#10B981]">
                 <p className="text-[#374151] mb-0">
-                  This website is provided "as is," with all faults, and CV Matcher makes no express or implied representations or warranties, of any kind related to this website or the materials contained on this website.
+                  This website is provided &quot;as is,&quot; with all faults, and CV Matcher makes no express or implied representations or warranties, of any kind related to this website or the materials contained on this website.
                 </p>
               </div>
             </motion.div>
