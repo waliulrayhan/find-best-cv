@@ -104,7 +104,7 @@ export default function Upload() {
       // Add error handling and logging to debug the issue
       console.log("Sending request to backend...");
       
-      const response = await fetch("http://127.0.0.1:8000/match-cvs", {
+      const response = await fetch("https://cv-matcher-api.onrender.com/match-cvs", {
         method: "POST",
         body: formData,
         // Add these headers to help with CORS
