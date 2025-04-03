@@ -4,12 +4,24 @@ from fastapi.responses import FileResponse
 from typing import List, Dict
 import os
 import shutil
-import fitz  # PyMuPDF
-from docx import Document
 import logging
 import uuid
+from text_processor import preprocess_text, compute_similarity, get_matching_keywords
+
+# Import scikit-learn components
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+# Import PyMuPDF and python-docx with proper error handling
+try:
+    import fitz  # PyMuPDF
+except ImportError:
+    raise ImportError("PyMuPDF is not installed. Run 'pip install pymupdf'")
+
+try:
+    from docx import Document
+except ImportError:
+    raise ImportError("python-docx is not installed. Run 'pip install python-docx'")
 
 # Configure logging
 logging.basicConfig(

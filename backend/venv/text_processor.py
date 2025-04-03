@@ -107,3 +107,32 @@ def compute_similarity(job_description: str, cv_texts: list[str]) -> list[tuple[
     ranked_indices.sort(key=lambda x: x[1], reverse=True)
     
     return ranked_indices
+
+def get_matching_keywords(jd_text: str, cv_text: str, top_n: int = 10) -> list[str]:
+    """
+    Extract matching keywords between job description and CV
+    
+    Args:
+        jd_text: The job description text
+        cv_text: The CV text
+        top_n: Number of top keywords to return
+        
+    Returns:
+        List of matching keywords
+    """
+    # Preprocess texts
+    processed_jd = preprocess_text(jd_text)
+    processed_cv = preprocess_text(cv_text)
+    
+    # Split texts into word sets
+    jd_words = set(processed_jd.split())
+    cv_words = set(processed_cv.split())
+    
+    # Find matching words
+    matching_words = jd_words.intersection(cv_words)
+    
+    # Filter out very short words
+    filtered_words = [word for word in matching_words if len(word) > 2]
+    
+    # Return top N matching words
+    return filtered_words[:top_n]
