@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import LoadingState from "../components/LoadingState";
+import { motion } from "framer-motion";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB limit
 
@@ -135,69 +136,149 @@ export default function Upload() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[#F8FAFC] py-12 px-4 sm:px-6 lg:px-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-4xl mx-auto"
+      >
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-800 tracking-tight">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-block mb-4"
+          >
+            <div className="w-20 h-20 mx-auto bg-gradient-to-br from-[#1E3A8A] to-[#10B981] rounded-full flex items-center justify-center shadow-lg">
+              <motion.svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-10 w-10 text-white" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                animate={{ rotate: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </motion.svg>
+            </div>
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-4xl font-extrabold text-[#1E3A8A] tracking-tight"
+          >
             Upload Your Files
-          </h1>
-          <p className="mt-3 text-lg text-gray-600">
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-3 text-lg text-[#374151]"
+          >
             Upload your job description and CV files to find the perfect match
-          </p>
+          </motion.p>
         </div>
         
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 shadow-sm animate-fadeIn">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-red-50 border-l-4 border-red-500 rounded-xl p-4 mb-6 shadow-sm"
+          >
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <motion.svg 
+                  animate={{ rotate: [0, 10, 0] }}
+                  transition={{ repeat: 3, duration: 0.3 }}
+                  className="h-5 w-5 text-red-400" 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                </svg>
+                </motion.svg>
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-red-800">{error}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
         
         {success && (
-          <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6 shadow-sm animate-fadeIn">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-green-50 border-l-4 border-[#10B981] rounded-xl p-4 mb-6 shadow-sm"
+          >
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                <motion.svg 
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ repeat: 1, duration: 0.5 }}
+                  className="h-5 w-5 text-[#10B981]" 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
+                </motion.svg>
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-green-800">{success}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
         
         <form onSubmit={handleSubmit} className="space-y-8">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl border border-gray-100"
+          >
             <div className="px-6 py-6 sm:p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Job Description
-              </h3>
-              <div className="h-1 w-16 bg-blue-600 rounded-full mb-4"></div>
-              <div className="text-sm text-gray-600 mb-5">
+              <div className="flex items-center mb-4">
+                <motion.div
+                  whileHover={{ rotate: 15 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="bg-[#1E3A8A] p-2 rounded-lg mr-3 shadow-md"
+                >
+                  <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                </motion.div>
+                <h3 className="text-xl font-bold text-[#1E3A8A]">
+                  Job Description
+                </h3>
+              </div>
+              <div className="h-1 w-24 bg-gradient-to-r from-[#1E3A8A] to-[#10B981] rounded-full mb-4"></div>
+              <div className="text-sm text-[#374151] mb-5">
                 Upload your job description file (PDF or DOCX)
               </div>
               <div className="mt-4">
                 <div className="flex items-center justify-center w-full">
-                  <label className="flex flex-col w-full h-40 border-2 border-dashed border-blue-200 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors duration-300">
+                  <motion.label 
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className="flex flex-col w-full h-40 border-2 border-dashed border-[#1E3A8A]/30 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors duration-300"
+                  >
                     <div className="flex flex-col items-center justify-center pt-7">
                       {jobFile ? (
                         <>
-                          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-2">
-                            <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            className="w-16 h-16 rounded-full bg-[#10B981]/20 flex items-center justify-center mb-2"
+                          >
+                            <svg className="w-8 h-8 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                          </div>
-                          <p className="text-sm font-medium text-gray-700">
+                          </motion.div>
+                          <p className="text-sm font-medium text-[#374151]">
                             {jobFile.name}
                           </p>
                           <p className="text-xs text-gray-500 mt-1">
@@ -206,12 +287,16 @@ export default function Upload() {
                         </>
                       ) : (
                         <>
-                          <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-2">
-                            <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <motion.div 
+                            animate={{ y: [0, -5, 0] }}
+                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                            className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center mb-2"
+                          >
+                            <svg className="w-8 h-8 text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                             </svg>
-                          </div>
-                          <p className="text-sm font-medium text-gray-700">
+                          </motion.div>
+                          <p className="text-sm font-medium text-[#374151]">
                             Click to upload job description
                           </p>
                           <p className="text-xs text-gray-500 mt-1">
@@ -226,33 +311,58 @@ export default function Upload() {
                       accept=".pdf,.docx" 
                       onChange={handleJobFileChange}
                     />
-                  </label>
+                  </motion.label>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl border border-gray-100"
+          >
             <div className="px-6 py-6 sm:p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                CV Files
-              </h3>
-              <div className="h-1 w-16 bg-blue-600 rounded-full mb-4"></div>
-              <div className="text-sm text-gray-600 mb-5">
+              <div className="flex items-center mb-4">
+                <motion.div
+                  whileHover={{ rotate: 15 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="bg-[#1E3A8A] p-2 rounded-lg mr-3 shadow-md"
+                >
+                  <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                  </svg>
+                </motion.div>
+                <h3 className="text-xl font-bold text-[#1E3A8A]">
+                  CV Files
+                </h3>
+              </div>
+              <div className="h-1 w-24 bg-gradient-to-r from-[#1E3A8A] to-[#10B981] rounded-full mb-4"></div>
+              <div className="text-sm text-[#374151] mb-5">
                 Upload multiple CV files (PDF or DOCX)
               </div>
               <div className="mt-4">
                 <div className="flex items-center justify-center w-full">
-                  <label className="flex flex-col w-full h-40 border-2 border-dashed border-blue-200 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors duration-300">
+                  <motion.label 
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className="flex flex-col w-full h-40 border-2 border-dashed border-[#1E3A8A]/30 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors duration-300"
+                  >
                     <div className="flex flex-col items-center justify-center pt-7">
                       {cvFiles.length > 0 ? (
                         <>
-                          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-2">
-                            <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            className="w-16 h-16 rounded-full bg-[#10B981]/20 flex items-center justify-center mb-2"
+                          >
+                            <svg className="w-8 h-8 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                          </div>
-                          <p className="text-sm font-medium text-gray-700">
+                          </motion.div>
+                          <p className="text-sm font-medium text-[#374151]">
                             {cvFiles.length} file(s) selected
                           </p>
                           <p className="text-xs text-gray-500 mt-1">
@@ -261,12 +371,16 @@ export default function Upload() {
                         </>
                       ) : (
                         <>
-                          <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-2">
-                            <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <motion.div 
+                            animate={{ y: [0, -5, 0] }}
+                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                            className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center mb-2"
+                          >
+                            <svg className="w-8 h-8 text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                             </svg>
-                          </div>
-                          <p className="text-sm font-medium text-gray-700">
+                          </motion.div>
+                          <p className="text-sm font-medium text-[#374151]">
                             Click to upload CV files
                           </p>
                           <p className="text-xs text-gray-500 mt-1">
@@ -282,34 +396,57 @@ export default function Upload() {
                       multiple 
                       onChange={handleCvFilesChange}
                     />
-                  </label>
+                  </motion.label>
                 </div>
               </div>
               {cvFiles.length > 0 && (
-                <div className="mt-6 bg-gray-50 rounded-xl p-4">
-                  <h4 className="text-sm font-medium text-gray-700 mb-2">Selected files:</h4>
-                  <div className="max-h-40 overflow-y-auto pr-2">
-                    <ul className="divide-y divide-gray-200">
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-6 bg-[#F8FAFC] rounded-xl p-4 border border-[#1E3A8A]/10"
+                >
+                  <h4 className="text-sm font-medium text-[#1E3A8A] mb-2 flex items-center">
+                    <svg className="h-4 w-4 text-[#F59E0B] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Selected files:
+                  </h4>
+                  <div className="max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#1E3A8A]/20 scrollbar-track-transparent">
+                    <ul className="divide-y divide-[#1E3A8A]/10">
                       {cvFiles.map((file, index) => (
-                        <li key={index} className="py-2 flex items-center">
-                          <svg className="h-4 w-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <motion.li 
+                          key={index} 
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="py-2 flex items-center"
+                        >
+                          <svg className="h-4 w-4 text-[#1E3A8A] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                           </svg>
-                          <span className="text-sm text-gray-600">{file.name}</span>
-                        </li>
+                          <span className="text-sm text-[#374151]">{file.name}</span>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
-          </div>
+          </motion.div>
           
-          <div className="flex justify-center mt-10">
-            <button
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="flex justify-center mt-10"
+          >
+            <motion.button
               type="submit"
               disabled={isLoading}
-              className={`px-8 py-4 text-base font-medium rounded-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-8 py-4 text-base font-medium rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#10B981] text-white shadow-lg hover:shadow-xl transform transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1E3A8A] ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
               {isLoading ? (
                 <>
@@ -320,12 +457,17 @@ export default function Upload() {
                   Processing...
                 </>
               ) : (
-                'Match CVs'
+                <>
+                  <span className="mr-2">Match CVs</span>
+                  <svg className="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </>
               )}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 } 
