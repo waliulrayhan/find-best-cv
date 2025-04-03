@@ -94,7 +94,8 @@ export default function Results() {
   const downloadCV = async (filename: string) => {
     try {
       // Make a request to the backend to get the original file
-      const response = await fetch(`https://cv-matcher-api.onrender.com/download-file/${filename}`);
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.replace('/match-cvs', '') || 'https://cv-matcher-api.onrender.com';
+      const response = await fetch(`${apiBaseUrl}/download-file/${filename}`);
       
       if (!response.ok) {
         throw new Error('Failed to download file');
