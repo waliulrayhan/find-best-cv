@@ -98,69 +98,6 @@ def extract_text_from_file(file_path: str, filename: str) -> str:
     else:
         raise HTTPException(status_code=400, detail=f"Unsupported file type: {filename}")
 
-def preprocess_text(text: str) -> str:
-    """Basic text preprocessing"""
-    # Convert to lowercase
-    text = text.lower()
-    
-    # Remove extra whitespace
-    text = ' '.join(text.split())
-    
-    return text
-
-def compute_similarity(jd_text: str, cv_texts: list) -> list:
-    """
-    Compute similarity between job description and CVs
-    Returns a list of (index, score) tuples sorted by score in descending order
-    """
-    # Preprocess texts
-    processed_jd = preprocess_text(jd_text)
-    processed_cvs = [preprocess_text(cv) for cv in cv_texts]
-    
-    # Compute TF-IDF vectors
-    vectorizer = TfidfVectorizer(stop_words='english')
-    
-    # Combine JD and CVs for vectorization
-    all_texts = [processed_jd] + processed_cvs
-    tfidf_matrix = vectorizer.fit_transform(all_texts)
-    
-    # Get JD vector (first row)
-    jd_vector = tfidf_matrix[0]
-    
-    # Compute cosine similarity between JD and each CV
-    similarities = []
-    
-    for i in range(1, len(all_texts)):
-        cv_vector = tfidf_matrix[i]
-        similarity = cosine_similarity(jd_vector, cv_vector)[0][0]
-        # Scale similarity to better distribute scores (optional)
-        # This helps create more distinction between good, strong, and best matches
-        scaled_similarity = (similarity * 1.2) if similarity > 0.5 else similarity
-        # Ensure it doesn't exceed 1.0
-        scaled_similarity = min(scaled_similarity, 1.0)
-        similarities.append((i-1, scaled_similarity))
-    
-    # Sort by similarity score in descending order
-    similarities.sort(key=lambda x: x[1], reverse=True)
-    
-    return similarities
-
-def get_matching_keywords(jd_text: str, cv_text: str, top_n: int = 10) -> List[str]:
-    """Extract matching keywords between job description and CV"""
-    # Split texts into word sets
-    jd_words = set(jd_text.split())
-    cv_words = set(cv_text.split())
-    
-    # Find matching words
-    matching_words = jd_words.intersection(cv_words)
-    
-    # Filter out common words
-    common_words = {"the", "and", "a", "to", "of", "in", "is", "for", "with", "on", "at", "by", "an", "be", "that", "this"}
-    filtered_words = [word for word in matching_words if word.lower() not in common_words and len(word) > 2]
-    
-    # Return top N matching words
-    return filtered_words[:top_n]
-
 @app.post("/match-cvs")
 async def match_cvs(
     job_description_file: UploadFile = File(...),
