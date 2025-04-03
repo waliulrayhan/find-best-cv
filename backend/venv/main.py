@@ -1,11 +1,15 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from typing import List, Dict, Tuple
+from fastapi.responses import FileResponse
+from typing import List, Dict
 import os
+import shutil
 import fitz  # PyMuPDF
 from docx import Document
-from text_processor import preprocess_text, compute_similarity
 import logging
+import uuid
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Configure logging
 logging.basicConfig(
@@ -26,7 +30,30 @@ app.add_middleware(
 )
 
 # Create uploads directory if it doesn't exist
-os.makedirs("uploads", exist_ok=True)
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+# Store file mappings
+file_mappings: Dict[str, str] = {}
+
+def save_upload_file(upload_file: UploadFile) -> str:
+    """Save an upload file to disk and return the path"""
+    # Create a unique filename to avoid collisions
+    file_extension = os.path.splitext(upload_file.filename)[1]
+    unique_filename = f"{uuid.uuid4()}{file_extension}"
+    file_path = os.path.join(UPLOAD_DIR, unique_filename)
+    
+    # Save the file
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(upload_file.file, buffer)
+    
+    # Reset the file pointer for future reads
+    upload_file.file.seek(0)
+    
+    # Store the mapping between original filename and saved path
+    file_mappings[upload_file.filename] = file_path
+    
+    return file_path
 
 def extract_text_from_pdf(file_path: str) -> str:
     """Extract text from PDF file"""
@@ -59,9 +86,68 @@ def extract_text_from_file(file_path: str, filename: str) -> str:
     else:
         raise HTTPException(status_code=400, detail=f"Unsupported file type: {filename}")
 
-@app.get("/")
-async def read_root():
-    return {"status": "API is running"}
+def preprocess_text(text: str) -> str:
+    """Basic text preprocessing"""
+    # Convert to lowercase
+    text = text.lower()
+    
+    # Remove extra whitespace
+    text = ' '.join(text.split())
+    
+    return text
+
+def compute_similarity(jd_text: str, cv_texts: list) -> list:
+    """
+    Compute similarity between job description and CVs
+    Returns a list of (index, score) tuples sorted by score in descending order
+    """
+    # Preprocess texts
+    processed_jd = preprocess_text(jd_text)
+    processed_cvs = [preprocess_text(cv) for cv in cv_texts]
+    
+    # Compute TF-IDF vectors
+    vectorizer = TfidfVectorizer(stop_words='english')
+    
+    # Combine JD and CVs for vectorization
+    all_texts = [processed_jd] + processed_cvs
+    tfidf_matrix = vectorizer.fit_transform(all_texts)
+    
+    # Get JD vector (first row)
+    jd_vector = tfidf_matrix[0]
+    
+    # Compute cosine similarity between JD and each CV
+    similarities = []
+    
+    for i in range(1, len(all_texts)):
+        cv_vector = tfidf_matrix[i]
+        similarity = cosine_similarity(jd_vector, cv_vector)[0][0]
+        # Scale similarity to better distribute scores (optional)
+        # This helps create more distinction between good, strong, and best matches
+        scaled_similarity = (similarity * 1.2) if similarity > 0.5 else similarity
+        # Ensure it doesn't exceed 1.0
+        scaled_similarity = min(scaled_similarity, 1.0)
+        similarities.append((i-1, scaled_similarity))
+    
+    # Sort by similarity score in descending order
+    similarities.sort(key=lambda x: x[1], reverse=True)
+    
+    return similarities
+
+def get_matching_keywords(jd_text: str, cv_text: str, top_n: int = 10) -> List[str]:
+    """Extract matching keywords between job description and CV"""
+    # Split texts into word sets
+    jd_words = set(jd_text.split())
+    cv_words = set(cv_text.split())
+    
+    # Find matching words
+    matching_words = jd_words.intersection(cv_words)
+    
+    # Filter out common words
+    common_words = {"the", "and", "a", "to", "of", "in", "is", "for", "with", "on", "at", "by", "an", "be", "that", "this"}
+    filtered_words = [word for word in matching_words if word.lower() not in common_words and len(word) > 2]
+    
+    # Return top N matching words
+    return filtered_words[:top_n]
 
 @app.post("/match-cvs")
 async def match_cvs(
@@ -71,47 +157,31 @@ async def match_cvs(
     """
     Upload job description (PDF/DOCX) and CVs (PDF/DOCX) to find best matches
     """
-    logger.info(f"Received request with job description: {job_description_file.filename} and {len(cv_files)} CVs")
+    jd_path = None
+    cv_paths = []
     
-    # Create temporary directory for uploads
-    upload_directory = "uploads"
-    os.makedirs(upload_directory, exist_ok=True)
-
     try:
-        # Process job description file
-        jd_path = os.path.join(upload_directory, job_description_file.filename)
-        with open(jd_path, "wb") as buffer:
-            buffer.write(await job_description_file.read())
+        logger.info(f"Processing job description: {job_description_file.filename}")
         
-        logger.info(f"Saved job description file: {jd_path}")
+        # Save job description file
+        jd_path = save_upload_file(job_description_file)
         
-        # Extract and preprocess job description text
-        try:
-            jd_text = extract_text_from_file(jd_path, job_description_file.filename)
-            processed_jd = preprocess_text(jd_text)
-            logger.info(f"Processed job description: {job_description_file.filename}")
-        except Exception as e:
-            logger.error(f"Error processing job description: {str(e)}")
-            raise HTTPException(status_code=400, detail=f"Error processing job description: {str(e)}")
-        finally:
-            # Clean up job description file
-            if os.path.exists(jd_path):
-                os.remove(jd_path)
-
+        # Extract text from job description
+        jd_text = extract_text_from_file(jd_path, job_description_file.filename)
+        processed_jd = preprocess_text(jd_text)
+        
         # Process CV files
         cv_texts = []
-        cv_filenames = []
         processed_cvs = []
-
+        cv_filenames = []
+        
         for cv_file in cv_files:
-            cv_path = os.path.join(upload_directory, cv_file.filename)
-            
             try:
-                # Save uploaded file
-                with open(cv_path, "wb") as buffer:
-                    buffer.write(await cv_file.read())
+                logger.info(f"Processing CV: {cv_file.filename}")
                 
-                logger.info(f"Saved CV file: {cv_path}")
+                # Save CV file
+                cv_path = save_upload_file(cv_file)
+                cv_paths.append(cv_path)
                 
                 # Extract and preprocess CV text
                 cv_text = extract_text_from_file(cv_path, cv_file.filename)
@@ -126,10 +196,6 @@ async def match_cvs(
             except Exception as e:
                 logger.error(f"Error processing {cv_file.filename}: {str(e)}")
                 continue
-            finally:
-                # Clean up CV file
-                if os.path.exists(cv_path):
-                    os.remove(cv_path)
         
         if not cv_texts:
             logger.warning("No valid CV files were uploaded")
@@ -141,13 +207,17 @@ async def match_cvs(
         # Format response with detailed ranking information
         ranked_results = []
         for idx, score in rankings:
-            # Get matching keywords (simplified version without mapping)
+            # Get matching keywords
             matched_keywords = get_matching_keywords(processed_jd, processed_cvs[idx])
+            
+            # Log the score for debugging
+            logger.info(f"CV: {cv_filenames[idx]}, Score: {score}")
             
             ranked_results.append({
                 "filename": cv_filenames[idx],
-                "similarity_score": round(score, 2),
-                "cv_preview": cv_texts[idx][:200] + "...",  # Preview of CV text
+                "similarity_score": round(score, 2),  # Round to 2 decimal places
+                "cv_preview": cv_texts[idx][:200] + "...",
+                "full_text": cv_texts[idx],
                 "matched_keywords": matched_keywords
             })
         
@@ -156,7 +226,8 @@ async def match_cvs(
         response_data = {
             "job_description": {
                 "filename": job_description_file.filename,
-                "preview": jd_text[:200] + "..."
+                "preview": jd_text[:200] + "...",
+                "full_text": jd_text
             },
             "total_cvs_processed": len(cv_texts),
             "rankings": ranked_results
@@ -168,20 +239,27 @@ async def match_cvs(
     except Exception as e:
         logger.error(f"Error in match-cvs endpoint: {str(e)}")
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
-
-def get_matching_keywords(jd_text: str, cv_text: str, top_n: int = 5) -> List[str]:
-    """Extract matching keywords between job description and CV"""
-    # Split texts into word sets
-    jd_words = set(jd_text.split())
-    cv_words = set(cv_text.split())
     
-    # Find matching words
-    matching_words = jd_words.intersection(cv_words)
-    
-    # Return top N matching words
-    return list(matching_words)[:top_n]
+    finally:
+        # Keep files for download
+        pass
 
-# Add a simple health check endpoint
+@app.get("/download-file/{filename}")
+async def download_file(filename: str):
+    """Download a previously uploaded file by its original filename"""
+    if filename not in file_mappings:
+        raise HTTPException(status_code=404, detail=f"File {filename} not found")
+    
+    file_path = file_mappings[filename]
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail=f"File {filename} no longer exists on the server")
+    
+    return FileResponse(
+        path=file_path,
+        filename=filename,
+        media_type='application/octet-stream'
+    )
+
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
