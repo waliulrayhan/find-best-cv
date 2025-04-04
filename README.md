@@ -2,7 +2,7 @@
 
 A powerful AI-driven application that helps recruiters and HR professionals find the best candidates by automatically screening and ranking resumes/CVs based on job requirements.
 
-![CV Matcher Preview](/bg.jpg)
+![image](https://github.com/user-attachments/assets/725d9e17-dba0-4024-bc5e-b98c34e48632)
 
 ## 🚀 Features
 
