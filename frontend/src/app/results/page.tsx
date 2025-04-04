@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import LoadingState from "../components/LoadingState";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiDownload, FiEye, FiPlus, FiX, FiArrowLeft, FiArrowRight, FiFileText, FiAward } from "react-icons/fi";
+import { useToast } from "../context/ToastContext";
 
 type MatchResult = {
   job_description: {
@@ -24,6 +25,7 @@ type MatchResult = {
 
 export default function Results() {
   const router = useRouter();
+  const { showToast } = useToast();
   const [results, setResults] = useState<MatchResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
@@ -93,6 +95,8 @@ export default function Results() {
   // Function to download CV in original format
   const downloadCV = async (filename: string) => {
     try {
+      showToast(`Downloading ${filename}...`, "info");
+      
       // Make a request to the backend to get the original file
       const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.replace('/match-cvs', '') || 'https://cv-matcher-api.onrender.com';
       const response = await fetch(`${apiBaseUrl}/download-file/${filename}`);
@@ -113,9 +117,11 @@ export default function Results() {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      
+      showToast(`${filename} downloaded successfully!`, "success");
     } catch (error) {
       console.error('Error downloading file:', error);
-      alert('Failed to download file. The original file may not be available.');
+      showToast('Failed to download file. The original file may not be available.', "error");
     }
   };
 

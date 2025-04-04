@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useToast } from "../context/ToastContext";
 
 export default function ContactPage() {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,6 +47,8 @@ export default function ContactPage() {
           message: data.message
         });
         
+        showToast(data.message, "success");
+        
         // Reset form
         setFormData({
           name: '',
@@ -53,17 +57,23 @@ export default function ContactPage() {
           message: ''
         });
       } else {
+        const errorMsg = data.message + (data.error ? ` Error: ${data.error}` : '');
         setSubmitStatus({
           success: false,
-          message: data.message + (data.error ? ` Error: ${data.error}` : '')
+          message: errorMsg
         });
+        
+        showToast(errorMsg, "error");
       }
     } catch (error) {
       console.error('Error submitting form:', error);
+      const errorMsg = 'Something went wrong. Please try again later. ' + (error instanceof Error ? error.message : '');
       setSubmitStatus({
         success: false,
-        message: 'Something went wrong. Please try again later. ' + (error instanceof Error ? error.message : '')
+        message: errorMsg
       });
+      
+      showToast(errorMsg, "error");
     } finally {
       setIsSubmitting(false);
     }

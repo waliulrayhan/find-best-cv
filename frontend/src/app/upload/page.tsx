@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import LoadingState from "../components/LoadingState";
 import { motion } from "framer-motion";
+import { useToast } from "../context/ToastContext";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB limit
 
 export default function Upload() {
   const router = useRouter();
+  const { showToast } = useToast();
   const [jobFile, setJobFile] = useState<File | null>(null);
   const [cvFiles, setCvFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,14 +48,17 @@ export default function Upload() {
   const handleJobFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      const error = validateFile(file);
-      if (error) {
-        setError(error);
+      const errorMsg = validateFile(file);
+      if (errorMsg) {
+        setError(errorMsg);
+        showToast(errorMsg, "error");
         return;
       }
       setJobFile(file);
       setError(null);
-      setSuccess("Job description file uploaded successfully!");
+      const successMsg = "Job description file uploaded successfully!";
+      setSuccess(successMsg);
+      showToast(successMsg, "success");
     }
   };
 
@@ -63,16 +68,19 @@ export default function Upload() {
       
       // Validate each file
       for (const file of files) {
-        const error = validateFile(file);
-        if (error) {
-          setError(error);
+        const errorMsg = validateFile(file);
+        if (errorMsg) {
+          setError(errorMsg);
+          showToast(errorMsg, "error");
           return;
         }
       }
       
       setCvFiles(files);
       setError(null);
-      setSuccess(`${files.length} CV file(s) uploaded successfully!`);
+      const successMsg = `${files.length} CV file(s) uploaded successfully!`;
+      setSuccess(successMsg);
+      showToast(successMsg, "success");
     }
   };
 
@@ -80,18 +88,23 @@ export default function Upload() {
     e.preventDefault();
     
     if (!jobFile) {
-      setError("Please upload a job description file");
+      const errorMsg = "Please upload a job description file";
+      setError(errorMsg);
+      showToast(errorMsg, "error");
       return;
     }
     
     if (cvFiles.length === 0) {
-      setError("Please upload at least one CV file");
+      const errorMsg = "Please upload at least one CV file";
+      setError(errorMsg);
+      showToast(errorMsg, "error");
       return;
     }
     
     setIsLoading(true);
     setError(null);
     setSuccess(null);
+    showToast("Processing your files...", "info");
     
     const formData = new FormData();
     formData.append("job_description_file", jobFile);
@@ -123,6 +136,8 @@ export default function Upload() {
       const data = await response.json();
       console.log("Data received:", data);
       
+      showToast("Files processed successfully!", "success");
+      
       // Store results in localStorage to pass to results page
       localStorage.setItem("matchResults", JSON.stringify(data));
       
@@ -130,7 +145,9 @@ export default function Upload() {
       router.push("/results");
     } catch (err) {
       console.error("Fetch error:", err);
-      setError(`Failed to process files: ${err instanceof Error ? err.message : String(err)}`);
+      const errorMsg = `Failed to process files: ${err instanceof Error ? err.message : String(err)}`;
+      setError(errorMsg);
+      showToast(errorMsg, "error");
       setIsLoading(false);
     }
   };
