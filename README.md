@@ -58,6 +58,24 @@ cv-matcher/
 
 ## 🔧 Installation & Setup
 
+### ⚡ Option 1: Run with Docker (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/waliulrayhan/find-best-cv.git
+cd find-best-cv
+
+# Build and run using Docker Compose
+docker-compose up --build
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+
+✅ Make sure Docker & Docker Compose are installed on your system.
+```
+
+### 🧑‍💻 Option 2: Manual Setup
+
 ### Prerequisites
 - Node.js (v16+)
 - Python (v3.8+)
