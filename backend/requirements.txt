@@ -1,6 +1,6 @@
 fastapi==0.95.2
 uvicorn==0.22.0
-python-multipart==0.0.5
+python-multipart==0.0.18
 scikit-learn==1.2.2
 nltk==3.8.1
 PyMuPDF==1.22.5
