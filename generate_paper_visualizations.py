@@ -35,7 +35,7 @@ OUTPUT_DIR = BASE_DIR / "paper_figures"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 # Load the latest training data
-EXPERIMENT_NAME = "hybrid_cv_model_20251029_090308"
+EXPERIMENT_NAME = "hybrid_cv_model_20251029_164410"
 TRAINING_PROGRESS = RESULTS_DIR / EXPERIMENT_NAME / "training_progress.json"
 EVALUATION_REPORT = RESULTS_DIR / f"{EXPERIMENT_NAME}_evaluation_report.json"
 FINAL_SUMMARY = RESULTS_DIR / f"{EXPERIMENT_NAME}_final_summary.json"

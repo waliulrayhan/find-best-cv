@@ -84,7 +84,7 @@ TRAINING_CONFIG = {
     "learning_rate": 2e-5,
     "weight_decay": 0.05,  # Increased from 0.01 for stronger L2 regularization
     "max_epochs": 20,
-    "patience": 5,  # Reduced from 10 to stop earlier and prevent overfitting
+    "patience": 3,  # Reduced from 10 to stop earlier and prevent overfitting
     "min_delta": 0.001,
     "warmup_steps": 500,
     "gradient_clip_value": 1.0,
