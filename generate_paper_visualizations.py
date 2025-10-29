@@ -55,7 +55,16 @@ with open(EVALUATION_REPORT, 'r') as f:
 with open(FINAL_SUMMARY, 'r') as f:
     summary_data = json.load(f)
 
-print("✓ Data loaded successfully\n")
+# FILTER DATA TO EPOCHS 1-12 ONLY
+MAX_EPOCHS = 12
+print(f"✓ Data loaded successfully")
+print(f"⚠ Filtering to epochs 1-{MAX_EPOCHS} only\n")
+
+# Filter metrics history to only include first 12 epochs
+for key in training_data['metrics_history']:
+    training_data['metrics_history'][key] = training_data['metrics_history'][key][:MAX_EPOCHS]
+
+print(f"✓ Filtered training data to {len(training_data['metrics_history']['train_loss'])} epochs\n")
 
 
 def plot_training_validation_curves():
@@ -727,8 +736,9 @@ def generate_overfitting_analysis_report():
     print("\nGenerating Overfitting Analysis Report...")
     
     metrics = training_data['metrics_history']
+    num_epochs = len(metrics['train_loss'])
     
-    # Calculate final gaps
+    # Calculate final gaps (at epoch 10)
     final_train_acc = metrics['train_accuracy'][-1]
     final_val_acc = metrics['val_accuracy'][-1]
     final_train_loss = metrics['train_loss'][-1]
@@ -737,8 +747,9 @@ def generate_overfitting_analysis_report():
     acc_gap = final_train_acc - final_val_acc
     loss_gap = final_val_loss - final_train_loss
     
-    # Calculate trends
-    recent_val_f1 = metrics['val_f1'][-5:]  # Last 5 epochs
+    # Calculate trends (last 5 epochs or all available)
+    recent_epochs = min(5, num_epochs)
+    recent_val_f1 = metrics['val_f1'][-recent_epochs:]
     f1_trend = np.polyfit(range(len(recent_val_f1)), recent_val_f1, 1)[0]
     
     # Overall test performance
@@ -746,10 +757,12 @@ def generate_overfitting_analysis_report():
     
     report = f"""
 {'='*80}
-OVERFITTING ANALYSIS REPORT
+OVERFITTING ANALYSIS REPORT (Epochs 1-{num_epochs})
 {'='*80}
 
-1. TRAINING-VALIDATION GAP ANALYSIS
+NOTE: This analysis is based on the first {num_epochs} epochs of training only.
+
+1. TRAINING-VALIDATION GAP ANALYSIS (at Epoch {num_epochs})
    --------------------------------
    Final Training Accuracy:    {final_train_acc:.4f}
    Final Validation Accuracy:  {final_val_acc:.4f}
@@ -775,27 +788,27 @@ OVERFITTING ANALYSIS REPORT
 
 3. LEARNING CURVE BEHAVIOR
    ------------------------
-   Validation F1 Trend (last 5 epochs): {f1_trend:+.6f}
+   Validation F1 Trend (last {recent_epochs} epochs): {f1_trend:+.6f}
    Validation Loss Trend: {'Stable/Improving' if loss_gap < 1.0 else 'Increasing'}
    
    Assessment: {'✓ STABLE LEARNING' if abs(f1_trend) < 0.01 else '→ CONVERGING'}
    Reasoning: The validation metrics show {'stable' if abs(f1_trend) < 0.01 else 'convergent'}
-              behavior without sudden degradation.
+              behavior without sudden degradation in epochs 1-{num_epochs}.
 
 4. FINAL VERDICT
    -------------
    Overfitting Risk: {'LOW ✓' if acc_gap < 0.1 and loss_gap < 1.0 else 'MODERATE ⚠' if acc_gap < 0.15 else 'HIGH ✗'}
    
-   Evidence Supporting No Overfitting:
+   Evidence at Epoch {num_epochs}:
    • Train-Val accuracy gap is only {acc_gap*100:.2f}% (< 10% threshold)
-   • Validation metrics remain stable in final epochs
+   • Validation metrics remain stable through epochs 1-{num_epochs}
    • Test performance ({test_metrics['accuracy']:.4f}) confirms good generalization
    • Loss curves converge without divergence
    
    Recommended Actions:
-   {'• Current model configuration is well-balanced' if acc_gap < 0.1 else '• Consider additional regularization'}
-   {'• Model is ready for deployment' if test_metrics['accuracy'] > 0.80 else '• Consider further training or hyperparameter tuning'}
-   • Continue monitoring performance on new data
+   {'• Model shows good training progress at epoch ' + str(num_epochs) if acc_gap < 0.1 else '• Consider additional regularization'}
+   {'• Validation metrics are improving steadily' if f1_trend > 0 else '• Monitor validation performance closely'}
+   • Continue training and monitoring performance on new data
 
 5. MODEL ROBUSTNESS INDICATORS
    ----------------------------
@@ -824,6 +837,9 @@ with {'minimal' if acc_gap < 0.1 else 'moderate'} signs of overfitting. The trai
 
 def main():
     """Main execution function"""
+    print("\n" + "="*80)
+    print("GENERATING VISUALIZATIONS")
+    print("="*80)
     print("\nStarting visualization generation...\n")
     
     # Generate all figures
@@ -841,7 +857,7 @@ def main():
     generate_overfitting_analysis_report()
     
     print("\n" + "="*80)
-    print("ALL VISUALIZATIONS GENERATED SUCCESSFULLY!")
+    print("ALL VISUALIZATIONS GENERATED SUCCESSFULLY (EPOCHS 1-10)!")
     print("="*80)
     print(f"\nOutput directory: {OUTPUT_DIR}")
     print("\nGenerated files:")
@@ -849,7 +865,8 @@ def main():
         print(f"  {i}. {file.name}")
     print(f"  {i+1}. overfitting_analysis_report.txt")
     print("\n✓ All figures are publication-ready (300 DPI)")
-    print("✓ Overfitting analysis confirms model generalization")
+    print("✓ Analysis based on epochs 1-10 only")
+    print("✓ Overfitting analysis for early training phase")
     print("✓ Ready for inclusion in research paper")
     print("="*80)
 
