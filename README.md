@@ -8,7 +8,7 @@ A powerful AI-driven CV screening application that uses hybrid deep learning (BE
 - **Hybrid Deep Learning Model**: Combines BERT, CNN, LSTM, and traditional ML
 - **Multi-CV Upload**: Upload multiple resumes (PDF, DOCX) at once
 - **Job Description Analysis**: Intelligent matching based on semantic understanding
-- **High Accuracy**: Achieves 95%+ accuracy on CV-job matching
+- **High Accuracy**: Optimized for best performance on CV-job matching
 - **Mixed Precision Training**: Faster training with FP16 on compatible GPUs
 - **Interactive Web UI**: Modern Next.js frontend with real-time results
 - **RESTful API**: FastAPI backend for easy integration
@@ -284,10 +284,13 @@ BERT_CONFIG = {
 
 ### Training Results
 
-- **Accuracy**: 95.2%
-- **Precision**: 94.8%
-- **Recall**: 95.1%
-- **F1-Score**: 94.9%
+Performance metrics will vary based on your specific dataset and training configuration. The model is optimized to achieve the best possible accuracy while preventing overfitting.
+
+Example metrics from a training run:
+- **Accuracy**: 83-85%
+- **Precision**: 82-84%
+- **Recall**: 83-85%
+- **F1-Score**: 82-84%
 
 ### Inference Speed (RTX 3050)
 

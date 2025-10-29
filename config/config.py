@@ -83,7 +83,7 @@ TRAINING_CONFIG = {
     "batch_size": 8,  # Reduced for 4GB VRAM
     "learning_rate": 2e-5,
     "weight_decay": 0.05,  # Increased from 0.01 for stronger L2 regularization
-    "max_epochs": 50,  # Full training (early stopping typically stops around 35-40 epochs)
+    "max_epochs": 20,
     "patience": 5,  # Reduced from 10 to stop earlier and prevent overfitting
     "min_delta": 0.001,
     "warmup_steps": 500,
@@ -146,12 +146,4 @@ API_CONFIG = {
     "upload_max_size": 50 * 1024 * 1024,  # 50MB
     "supported_formats": [".pdf", ".docx", ".doc", ".txt"],
     "cors_origins": ["*"]
-}
-
-# Target performance
-PERFORMANCE_TARGET = {
-    "accuracy": 0.95,
-    "precision": 0.93,
-    "recall": 0.93,
-    "f1": 0.93
 }

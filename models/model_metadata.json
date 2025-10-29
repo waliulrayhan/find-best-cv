@@ -29,10 +29,10 @@
   ],
   "vocab_size": 30000,
   "feature_weights": {
-    "bert_weight": 0.3078095316886902,
-    "cnn_weight": 0.24023427069187164,
-    "lstm_weight": 0.2426908016204834,
-    "traditional_weight": 0.20926539599895477
+    "bert_weight": 0.30496183037757874,
+    "cnn_weight": 0.24160154163837433,
+    "lstm_weight": 0.24304451048374176,
+    "traditional_weight": 0.2103920876979828
   },
   "config": {
     "bert_config": {
@@ -87,7 +87,7 @@
       "batch_size": 8,
       "learning_rate": 2e-05,
       "weight_decay": 0.05,
-      "max_epochs": 50,
+      "max_epochs": 20,
       "patience": 5,
       "min_delta": 0.001,
       "warmup_steps": 500,
@@ -107,5 +107,5 @@
       "max_text_length": 2000
     }
   },
-  "timestamp": "2025-10-29T10:29:15.254713"
+  "timestamp": "2025-10-29T15:20:10.409222"
 }

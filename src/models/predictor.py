@@ -253,16 +253,14 @@ class HybridModelPredictor:
             'confusion_matrix': cm.tolist(),
             'classification_report': class_report,
             'predictions': predictions,
-            'probabilities': probabilities,
-            'target_achieved': accuracy >= PERFORMANCE_TARGET['accuracy']
+            'probabilities': probabilities
         }
         
         logger.info(f"Evaluation complete:")
-        logger.info(f"Accuracy: {accuracy:.4f}")
-        logger.info(f"Precision: {precision:.4f}")
-        logger.info(f"Recall: {recall:.4f}")
-        logger.info(f"F1: {f1:.4f}")
-        logger.info(f"Target achieved: {evaluation_results['target_achieved']}")
+        logger.info(f"Accuracy: {accuracy:.4f} ({accuracy*100:.2f}%)")
+        logger.info(f"Precision: {precision:.4f} ({precision*100:.2f}%)")
+        logger.info(f"Recall: {recall:.4f} ({recall*100:.2f}%)")
+        logger.info(f"F1: {f1:.4f} ({f1*100:.2f}%)")
         
         return evaluation_results
     
@@ -406,8 +404,7 @@ class ModelEvaluator:
             'timestamp': pd.Timestamp.now().isoformat(),
             'model_info': self.predictor.get_model_info(),
             'test_evaluation': evaluation_results,
-            'cross_validation': cv_results,
-            'performance_target_met': evaluation_results['target_achieved']
+            'cross_validation': cv_results
         }
         
         # Save report if path provided

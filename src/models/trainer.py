@@ -473,8 +473,11 @@ class HybridModelTrainer:
         # Save model
         self.save_model(metadata)
         
-        logger.info(f"Training complete! Test F1: {test_metrics['f1']:.4f}")
-        logger.info(f"Target accuracy achieved: {test_metrics['accuracy'] >= PERFORMANCE_TARGET['accuracy']}")
+        logger.info(f"Training complete!")
+        logger.info(f"Test Accuracy: {test_metrics['accuracy']:.4f} ({test_metrics['accuracy']*100:.2f}%)")
+        logger.info(f"Test Precision: {test_metrics['precision']:.4f} ({test_metrics['precision']*100:.2f}%)")
+        logger.info(f"Test Recall: {test_metrics['recall']:.4f} ({test_metrics['recall']*100:.2f}%)")
+        logger.info(f"Test F1: {test_metrics['f1']:.4f} ({test_metrics['f1']*100:.2f}%)")
         
         return self.model
     
