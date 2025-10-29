@@ -1,0 +1,111 @@
+{
+  "model_architecture": "EnhancedHybridModel",
+  "num_classes": 24,
+  "classes": [
+    "HR",
+    "DESIGNER",
+    "INFORMATION-TECHNOLOGY",
+    "TEACHER",
+    "ADVOCATE",
+    "BUSINESS-DEVELOPMENT",
+    "HEALTHCARE",
+    "FITNESS",
+    "AGRICULTURE",
+    "BPO",
+    "SALES",
+    "CONSULTANT",
+    "DIGITAL-MEDIA",
+    "AUTOMOBILE",
+    "CHEF",
+    "FINANCE",
+    "APPAREL",
+    "ENGINEERING",
+    "ACCOUNTANT",
+    "CONSTRUCTION",
+    "PUBLIC-RELATIONS",
+    "BANKING",
+    "ARTS",
+    "AVIATION"
+  ],
+  "vocab_size": 30000,
+  "feature_weights": {
+    "bert_weight": 0.3078095316886902,
+    "cnn_weight": 0.24023427069187164,
+    "lstm_weight": 0.2426908016204834,
+    "traditional_weight": 0.20926539599895477
+  },
+  "config": {
+    "bert_config": {
+      "model_name": "distilbert-base-uncased",
+      "max_length": 512,
+      "hidden_size": 768,
+      "dropout": 0.4,
+      "num_layers": 2,
+      "freeze_bert": false
+    },
+    "cnn_config": {
+      "num_filters": [
+        100,
+        100,
+        100
+      ],
+      "filter_sizes": [
+        3,
+        4,
+        5
+      ],
+      "dropout": 0.5,
+      "activation": "relu"
+    },
+    "lstm_config": {
+      "hidden_size": 256,
+      "num_layers": 2,
+      "dropout": 0.4,
+      "bidirectional": true
+    },
+    "traditional_config": {
+      "tfidf_max_features": 10000,
+      "tfidf_ngram_range": [
+        1,
+        3
+      ],
+      "use_word2vec": true,
+      "word2vec_dim": 300,
+      "use_skill_features": true,
+      "use_experience_features": true
+    },
+    "hybrid_config": {
+      "bert_weight": 0.4,
+      "cnn_weight": 0.25,
+      "lstm_weight": 0.25,
+      "traditional_weight": 0.1,
+      "use_attention": true,
+      "attention_dim": 128,
+      "final_dropout": 0.3
+    },
+    "training_config": {
+      "batch_size": 8,
+      "learning_rate": 2e-05,
+      "weight_decay": 0.05,
+      "max_epochs": 50,
+      "patience": 5,
+      "min_delta": 0.001,
+      "warmup_steps": 500,
+      "gradient_clip_value": 1.0,
+      "accumulation_steps": 2,
+      "use_mixed_precision": true
+    },
+    "dataset_config": {
+      "raw_dataset_path": "c:\\Users\\Rayhan\\Desktop\\cv-screening-tool\\data\\raw\\Resume.csv",
+      "processed_dataset_path": "c:\\Users\\Rayhan\\Desktop\\cv-screening-tool\\data\\processed\\processed_dataset.csv",
+      "metadata_path": "c:\\Users\\Rayhan\\Desktop\\cv-screening-tool\\data\\processed\\metadata.json",
+      "train_split": 0.7,
+      "val_split": 0.15,
+      "test_split": 0.15,
+      "random_state": 42,
+      "min_text_length": 50,
+      "max_text_length": 2000
+    }
+  },
+  "timestamp": "2025-10-29T10:29:15.254713"
+}

@@ -1,0 +1,839 @@
+2025-10-27 11:55:34,429 - __main__ - INFO - ================================================================================
+2025-10-27 11:55:34,429 - __main__ - INFO - ENHANCED HYBRID CV SCREENING MODEL - TRAINING PIPELINE
+2025-10-27 11:55:34,429 - __main__ - INFO - ================================================================================
+2025-10-27 11:55:34,429 - __main__ - INFO - Target Accuracy: 95.0%
+2025-10-27 11:55:34,430 - __main__ - INFO - Project Root: c:\Users\Rayhan\Desktop\cv-screening-tool
+2025-10-27 11:55:34,430 - __main__ - INFO - Models Directory: c:\Users\Rayhan\Desktop\cv-screening-tool\models
+2025-10-27 11:55:34,430 - __main__ - INFO - Experiments Directory: c:\Users\Rayhan\Desktop\cv-screening-tool\experiments
+2025-10-27 11:55:34,430 - __main__ - INFO - 
+==================================================
+2025-10-27 11:55:34,430 - __main__ - INFO - STEP 1: INITIALIZING TRAINER
+2025-10-27 11:55:34,430 - __main__ - INFO - ==================================================
+2025-10-27 11:55:35,599 - __main__ - INFO - 
+==================================================
+2025-10-27 11:55:35,599 - __main__ - INFO - STEP 2: TRAINING HYBRID MODEL
+2025-10-27 11:55:35,599 - __main__ - INFO - ==================================================
+2025-10-27 11:55:35,599 - __main__ - INFO - Training configuration:
+2025-10-27 11:55:35,599 - __main__ - INFO -   batch_size: 8
+2025-10-27 11:55:35,601 - __main__ - INFO -   learning_rate: 2e-05
+2025-10-27 11:55:35,601 - __main__ - INFO -   weight_decay: 0.01
+2025-10-27 11:55:35,601 - __main__ - INFO -   max_epochs: 100
+2025-10-27 11:55:35,601 - __main__ - INFO -   patience: 10
+2025-10-27 11:55:35,601 - __main__ - INFO -   min_delta: 0.001
+2025-10-27 11:55:35,601 - __main__ - INFO -   warmup_steps: 500
+2025-10-27 11:55:35,601 - __main__ - INFO -   gradient_clip_value: 1.0
+2025-10-27 11:55:35,601 - __main__ - INFO -   accumulation_steps: 2
+2025-10-27 11:55:35,601 - __main__ - INFO -   use_mixed_precision: True
+2025-10-27 11:55:35,601 - src.models.trainer - INFO - Starting training...
+2025-10-27 11:55:35,601 - src.models.trainer - INFO - Preparing data...
+2025-10-27 11:55:35,601 - src.data.data_processor - INFO - Loading processed data...
+2025-10-27 11:55:36,165 - src.data.data_processor - INFO - Processed data loaded successfully
+2025-10-27 11:55:36,165 - src.models.trainer - INFO - Loaded previously processed data
+2025-10-27 11:55:36,166 - src.data.data_processor - INFO - Creating training data splits...
+2025-10-27 11:55:36,171 - src.data.data_processor - INFO - Training samples: 1738
+2025-10-27 11:55:36,171 - src.data.data_processor - INFO - Validation samples: 372
+2025-10-27 11:55:36,171 - src.data.data_processor - INFO - Test samples: 373
+2025-10-27 11:55:36,171 - src.data.data_processor - INFO - Preparing traditional ML features...
+2025-10-27 11:55:55,074 - src.models.trainer - INFO - Creating hybrid model...
+2025-10-27 11:55:59,802 - src.models.trainer - INFO - Model created with 156,071,902 total parameters
+2025-10-27 11:55:59,802 - src.models.trainer - INFO - Trainable parameters: 156,071,902
+2025-10-27 11:55:59,804 - src.models.trainer - INFO - Epoch 1/100
+2025-10-27 11:56:08,247 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:56:17,631 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:56:28,226 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:56:38,118 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:59:02,630 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:59:11,600 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:59:21,917 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:59:31,370 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 11:59:48,292 - src.models.trainer - INFO - Train Loss: 3.1794, Val Loss: 3.1780, Val Acc: 0.0457, Val F1: 0.0040
+2025-10-27 11:59:48,292 - src.models.trainer - INFO - Epoch 2/100
+2025-10-27 11:59:58,165 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:00:07,847 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:00:17,495 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:00:26,823 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:02:49,768 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:02:59,069 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:03:09,266 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:03:20,315 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:03:39,032 - src.models.trainer - INFO - Train Loss: 3.1685, Val Loss: 3.1295, Val Acc: 0.1667, Val F1: 0.1333
+2025-10-27 12:03:39,032 - src.models.trainer - INFO - Epoch 3/100
+2025-10-27 12:03:51,490 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:04:03,069 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:04:13,958 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:04:26,479 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:06:47,642 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:06:56,357 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:07:05,678 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:07:13,982 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:07:29,485 - src.models.trainer - INFO - Train Loss: 2.8642, Val Loss: 2.4332, Val Acc: 0.3602, Val F1: 0.2573
+2025-10-27 12:07:29,485 - src.models.trainer - INFO - Epoch 4/100
+2025-10-27 12:07:39,309 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:07:48,728 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:07:58,435 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:08:07,801 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:10:32,182 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:10:41,836 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:10:51,426 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:11:00,700 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:11:16,999 - src.models.trainer - INFO - Train Loss: 2.0971, Val Loss: 1.8429, Val Acc: 0.5027, Val F1: 0.3916
+2025-10-27 12:11:16,999 - src.models.trainer - INFO - Epoch 5/100
+2025-10-27 12:11:26,841 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:11:36,244 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:11:45,754 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:11:55,031 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:14:32,579 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:14:44,758 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:14:55,663 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:15:06,594 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:15:21,845 - src.models.trainer - INFO - Train Loss: 1.6248, Val Loss: 1.4404, Val Acc: 0.6559, Val F1: 0.5863
+2025-10-27 12:15:21,846 - src.models.trainer - INFO - Epoch 6/100
+2025-10-27 12:15:31,179 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:15:41,776 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:15:52,020 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:16:00,282 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:18:21,756 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:18:30,206 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:18:39,075 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:18:50,347 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:19:07,584 - src.models.trainer - INFO - Train Loss: 1.2731, Val Loss: 1.1975, Val Acc: 0.7177, Val F1: 0.6763
+2025-10-27 12:19:07,584 - src.models.trainer - INFO - Epoch 7/100
+2025-10-27 12:19:17,718 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:19:28,773 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:19:38,786 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:19:48,440 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:22:13,050 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:22:21,593 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:22:30,206 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:22:38,865 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:22:53,541 - src.models.trainer - INFO - Train Loss: 0.9671, Val Loss: 1.1940, Val Acc: 0.8118, Val F1: 0.7947
+2025-10-27 12:22:53,541 - src.models.trainer - INFO - Epoch 8/100
+2025-10-27 12:23:02,043 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:23:10,449 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:23:18,875 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:23:27,114 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:25:46,992 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:25:55,399 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:26:04,060 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:26:12,634 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:26:27,231 - src.models.trainer - INFO - Train Loss: 0.6733, Val Loss: 1.2330, Val Acc: 0.8199, Val F1: 0.8105
+2025-10-27 12:26:27,231 - src.models.trainer - INFO - Epoch 9/100
+2025-10-27 12:26:35,558 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:26:44,435 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:26:53,198 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:27:01,652 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:29:21,133 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:29:29,852 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:29:38,533 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:29:46,928 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:30:01,847 - src.models.trainer - INFO - Train Loss: 0.5585, Val Loss: 1.1123, Val Acc: 0.8145, Val F1: 0.7999
+2025-10-27 12:30:01,847 - src.models.trainer - INFO - Epoch 10/100
+2025-10-27 12:30:10,215 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:30:18,491 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:30:27,302 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:30:35,766 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:32:55,028 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:33:04,145 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:33:12,974 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:33:21,378 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:33:36,516 - src.models.trainer - INFO - Train Loss: 0.3991, Val Loss: 1.6643, Val Acc: 0.8038, Val F1: 0.7912
+2025-10-27 12:33:36,517 - src.models.trainer - INFO - Epoch 11/100
+2025-10-27 12:33:45,213 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:33:54,060 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:34:03,065 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:34:11,657 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:36:31,573 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:36:40,543 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:36:49,227 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:36:57,446 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:37:12,233 - src.models.trainer - INFO - Train Loss: 0.3217, Val Loss: 1.6929, Val Acc: 0.8199, Val F1: 0.8100
+2025-10-27 12:37:12,234 - src.models.trainer - INFO - Epoch 12/100
+2025-10-27 12:37:20,766 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:37:29,165 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:37:38,397 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:37:47,207 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:40:07,237 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:40:16,050 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:40:24,578 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:40:32,712 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:40:47,639 - src.models.trainer - INFO - Train Loss: 0.2729, Val Loss: 1.6705, Val Acc: 0.8253, Val F1: 0.8131
+2025-10-27 12:40:47,640 - src.models.trainer - INFO - Epoch 13/100
+2025-10-27 12:40:56,241 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:41:04,489 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:41:12,934 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:41:21,059 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:43:39,243 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:43:47,140 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:43:54,875 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:44:02,696 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:44:18,236 - src.models.trainer - INFO - Train Loss: 0.2568, Val Loss: 1.8643, Val Acc: 0.8226, Val F1: 0.8114
+2025-10-27 12:44:18,237 - src.models.trainer - INFO - Epoch 14/100
+2025-10-27 12:44:27,334 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:44:35,762 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:44:44,718 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:44:53,277 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:47:12,376 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:47:21,187 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:47:29,926 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:47:38,624 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:47:53,173 - src.models.trainer - INFO - Train Loss: 0.2102, Val Loss: 1.9838, Val Acc: 0.8253, Val F1: 0.8174
+2025-10-27 12:47:53,173 - src.models.trainer - INFO - Epoch 15/100
+2025-10-27 12:48:01,138 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:48:09,089 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:48:17,917 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:48:26,272 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:50:48,776 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:50:57,677 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:51:06,526 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:51:14,837 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:51:29,259 - src.models.trainer - INFO - Train Loss: 0.2003, Val Loss: 2.5702, Val Acc: 0.8091, Val F1: 0.7975
+2025-10-27 12:51:29,259 - src.models.trainer - INFO - Epoch 16/100
+2025-10-27 12:51:37,292 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:51:45,148 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:51:53,078 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:52:00,912 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:54:21,183 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:54:29,867 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:54:38,890 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:54:47,460 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:55:02,852 - src.models.trainer - INFO - Train Loss: 0.1423, Val Loss: 2.6775, Val Acc: 0.8226, Val F1: 0.8162
+2025-10-27 12:55:02,852 - src.models.trainer - INFO - Epoch 17/100
+2025-10-27 12:55:11,251 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:55:19,972 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:55:28,945 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:55:37,685 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:57:59,297 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:58:08,085 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:58:17,027 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:58:25,772 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:58:41,275 - src.models.trainer - INFO - Train Loss: 0.1217, Val Loss: 2.5938, Val Acc: 0.8038, Val F1: 0.7982
+2025-10-27 12:58:41,275 - src.models.trainer - INFO - Epoch 18/100
+2025-10-27 12:58:50,281 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:58:59,339 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:59:08,213 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 12:59:16,845 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:01:37,499 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:01:46,194 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:01:55,093 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:02:03,821 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:02:19,249 - src.models.trainer - INFO - Train Loss: 0.1101, Val Loss: 2.6457, Val Acc: 0.8306, Val F1: 0.8232
+2025-10-27 13:02:19,249 - src.models.trainer - INFO - Epoch 19/100
+2025-10-27 13:02:28,267 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:02:36,992 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:02:45,900 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:02:54,433 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:05:10,578 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:05:18,226 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:05:26,005 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:05:33,565 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:05:47,861 - src.models.trainer - INFO - Train Loss: 0.1176, Val Loss: 2.7499, Val Acc: 0.8387, Val F1: 0.8330
+2025-10-27 13:05:47,861 - src.models.trainer - INFO - Epoch 20/100
+2025-10-27 13:05:55,718 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:06:03,840 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:06:11,646 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:06:19,334 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:08:38,356 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:08:46,695 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:08:54,826 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:09:02,574 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:09:16,714 - src.models.trainer - INFO - Train Loss: 0.0956, Val Loss: 2.8619, Val Acc: 0.8280, Val F1: 0.8239
+2025-10-27 13:09:16,714 - src.models.trainer - INFO - Epoch 21/100
+2025-10-27 13:09:24,576 - src.models.trainer - INFO - Using device: cuda 
+2025-10-27 13:09:32,398 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:09:40,271 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:09:47,800 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:12:04,096 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:12:11,777 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:12:19,535 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:12:27,068 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:12:41,575 - src.models.trainer - INFO - Train Loss: 0.0625, Val Loss: 2.8843, Val Acc: 0.8360, Val F1: 0.8348
+2025-10-27 13:12:41,577 - src.models.trainer - INFO - Epoch 22/100
+2025-10-27 13:12:49,572 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:12:57,578 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:13:05,516 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:13:13,136 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:15:29,432 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:15:37,111 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:15:44,940 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:15:52,468 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:16:06,694 - src.models.trainer - INFO - Train Loss: 0.0640, Val Loss: 3.3021, Val Acc: 0.8118, Val F1: 0.8050
+2025-10-27 13:16:06,694 - src.models.trainer - INFO - Epoch 23/100
+2025-10-27 13:16:15,178 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:16:23,042 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:16:30,978 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:16:38,744 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:18:54,697 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:19:02,501 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:19:10,321 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:19:18,003 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:19:32,418 - src.models.trainer - INFO - Train Loss: 0.0692, Val Loss: 3.4166, Val Acc: 0.8226, Val F1: 0.8159
+2025-10-27 13:19:32,418 - src.models.trainer - INFO - Epoch 24/100
+2025-10-27 13:19:40,242 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:19:48,264 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:19:56,264 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:20:04,024 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:22:20,637 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:22:28,450 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:22:37,296 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:22:47,318 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:23:03,317 - src.models.trainer - INFO - Train Loss: 0.0613, Val Loss: 3.3742, Val Acc: 0.8253, Val F1: 0.8189
+2025-10-27 13:23:03,318 - src.models.trainer - INFO - Epoch 25/100
+2025-10-27 13:23:12,358 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:23:21,535 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:23:30,746 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:23:39,918 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:25:59,642 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:26:07,733 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:26:15,781 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:26:23,679 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:26:38,520 - src.models.trainer - INFO - Train Loss: 0.0520, Val Loss: 3.2154, Val Acc: 0.8468, Val F1: 0.8408
+2025-10-27 13:26:38,520 - src.models.trainer - INFO - Epoch 26/100
+2025-10-27 13:26:46,713 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:26:54,718 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:27:02,864 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:27:10,811 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:29:27,892 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:29:35,336 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:29:42,844 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:29:50,163 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:30:03,939 - src.models.trainer - INFO - Train Loss: 0.0445, Val Loss: 3.3085, Val Acc: 0.8280, Val F1: 0.8218
+2025-10-27 13:30:03,939 - src.models.trainer - INFO - Epoch 27/100
+2025-10-27 13:30:11,291 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:30:18,596 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:30:26,078 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:30:33,335 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:32:47,164 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:32:54,512 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:33:02,054 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:33:09,781 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:33:24,136 - src.models.trainer - INFO - Train Loss: 0.0448, Val Loss: 3.5535, Val Acc: 0.8333, Val F1: 0.8293
+2025-10-27 13:33:24,136 - src.models.trainer - INFO - Epoch 28/100
+2025-10-27 13:33:33,024 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:33:41,022 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:33:50,606 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:34:00,336 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:36:17,332 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:36:24,858 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:36:32,371 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:36:40,372 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:36:54,366 - src.models.trainer - INFO - Train Loss: 0.0417, Val Loss: 3.4186, Val Acc: 0.8333, Val F1: 0.8258
+2025-10-27 13:36:54,366 - src.models.trainer - INFO - Epoch 29/100
+2025-10-27 13:37:02,190 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:37:09,397 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:37:16,743 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:37:23,823 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:39:37,993 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:39:45,850 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:39:54,100 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:40:01,851 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:40:16,021 - src.models.trainer - INFO - Train Loss: 0.0381, Val Loss: 3.4221, Val Acc: 0.8280, Val F1: 0.8241
+2025-10-27 13:40:16,021 - src.models.trainer - INFO - Epoch 30/100
+2025-10-27 13:40:23,636 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:40:31,219 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:40:39,259 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:40:46,789 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:43:00,483 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:43:07,373 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:43:14,320 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:43:21,180 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:43:34,442 - src.models.trainer - INFO - Train Loss: 0.0497, Val Loss: 3.4532, Val Acc: 0.8199, Val F1: 0.8149
+2025-10-27 13:43:34,442 - src.models.trainer - INFO - Epoch 31/100
+2025-10-27 13:43:41,733 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:43:48,767 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:43:55,897 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:44:02,853 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:46:14,377 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:46:21,582 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:46:29,485 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:46:36,990 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:46:50,618 - src.models.trainer - INFO - Train Loss: 0.0223, Val Loss: 3.6903, Val Acc: 0.8280, Val F1: 0.8203
+2025-10-27 13:46:50,618 - src.models.trainer - INFO - Epoch 32/100
+2025-10-27 13:46:57,729 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:47:04,752 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:47:11,838 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:47:18,652 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:49:30,555 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:49:37,463 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:49:44,658 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:49:51,427 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:50:04,827 - src.models.trainer - INFO - Train Loss: 0.0159, Val Loss: 3.5006, Val Acc: 0.8414, Val F1: 0.8371
+2025-10-27 13:50:04,827 - src.models.trainer - INFO - Epoch 33/100
+2025-10-27 13:50:12,090 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:50:19,303 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:50:26,254 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:50:33,042 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:52:46,825 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:52:54,291 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:53:02,022 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:53:09,618 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:53:23,439 - src.models.trainer - INFO - Train Loss: 0.0168, Val Loss: 3.7100, Val Acc: 0.8226, Val F1: 0.8218
+2025-10-27 13:53:23,439 - src.models.trainer - INFO - Epoch 34/100
+2025-10-27 13:53:30,994 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:53:38,367 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:53:46,090 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:53:53,494 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:56:08,511 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:56:15,910 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:56:23,604 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:56:31,006 - src.models.trainer - INFO - Using device: cuda
+2025-10-27 13:56:45,181 - src.models.trainer - INFO - Train Loss: 0.0148, Val Loss: 3.2955, Val Acc: 0.8333, Val F1: 0.83452025-10-29 09:03:08,642 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:03:08,645 - __main__ - INFO - ================================================================================
+2025-10-29 09:03:08,645 - __main__ - INFO - ENHANCED HYBRID CV SCREENING MODEL - TRAINING PIPELINE
+2025-10-29 09:03:08,645 - __main__ - INFO - ================================================================================
+2025-10-29 09:03:08,645 - __main__ - INFO - Target Accuracy: 95.0%
+2025-10-29 09:03:08,645 - __main__ - INFO - Project Root: c:\Users\Rayhan\Desktop\cv-screening-tool
+2025-10-29 09:03:08,645 - __main__ - INFO - Models Directory: c:\Users\Rayhan\Desktop\cv-screening-tool\models
+2025-10-29 09:03:08,646 - __main__ - INFO - Experiments Directory: c:\Users\Rayhan\Desktop\cv-screening-tool\experiments
+2025-10-29 09:03:08,646 - __main__ - INFO - 
+==================================================
+2025-10-29 09:03:08,646 - __main__ - INFO - STEP 1: INITIALIZING TRAINER
+2025-10-29 09:03:08,646 - __main__ - INFO - ==================================================
+2025-10-29 09:03:09,767 - __main__ - INFO - 
+==================================================
+2025-10-29 09:03:09,767 - __main__ - INFO - STEP 2: TRAINING HYBRID MODEL
+2025-10-29 09:03:09,767 - __main__ - INFO - ==================================================
+2025-10-29 09:03:09,767 - __main__ - INFO - Training configuration:
+2025-10-29 09:03:09,767 - __main__ - INFO -   batch_size: 8
+2025-10-29 09:03:09,767 - __main__ - INFO -   learning_rate: 2e-05
+2025-10-29 09:03:09,767 - __main__ - INFO -   weight_decay: 0.05
+2025-10-29 09:03:09,767 - __main__ - INFO -   max_epochs: 50
+2025-10-29 09:03:09,767 - __main__ - INFO -   patience: 5
+2025-10-29 09:03:09,767 - __main__ - INFO -   min_delta: 0.001
+2025-10-29 09:03:09,767 - __main__ - INFO -   warmup_steps: 500
+2025-10-29 09:03:09,767 - __main__ - INFO -   gradient_clip_value: 1.0
+2025-10-29 09:03:09,767 - __main__ - INFO -   accumulation_steps: 2
+2025-10-29 09:03:09,767 - __main__ - INFO -   use_mixed_precision: True
+2025-10-29 09:03:09,767 - src.models.trainer - INFO - Starting training...
+2025-10-29 09:03:09,767 - src.models.trainer - INFO - Preparing data...
+2025-10-29 09:03:09,767 - src.data.data_processor - INFO - Loading processed data...
+2025-10-29 09:03:10,261 - src.data.data_processor - INFO - Processed data loaded successfully
+2025-10-29 09:03:10,261 - src.models.trainer - INFO - Loaded previously processed data
+2025-10-29 09:03:10,261 - src.data.data_processor - INFO - Creating training data splits...
+2025-10-29 09:03:10,277 - src.data.data_processor - INFO - Training samples: 1738
+2025-10-29 09:03:10,277 - src.data.data_processor - INFO - Validation samples: 372
+2025-10-29 09:03:10,277 - src.data.data_processor - INFO - Test samples: 373
+2025-10-29 09:03:10,277 - src.data.data_processor - INFO - Preparing traditional ML features...
+2025-10-29 09:03:28,487 - src.models.trainer - INFO - Creating hybrid model...
+2025-10-29 09:03:33,929 - src.models.trainer - INFO - Model created with 156,071,902 total parameters
+2025-10-29 09:03:33,929 - src.models.trainer - INFO - Trainable parameters: 156,071,902
+2025-10-29 09:03:33,931 - src.models.trainer - INFO - Epoch 1/50
+2025-10-29 09:03:43,217 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:03:51,972 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:04:02,172 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:04:13,153 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:06:31,652 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:06:40,859 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:06:49,761 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:06:58,225 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:07:15,482 - src.models.trainer - INFO - Train Loss: 3.1772, Val Loss: 3.1763, Val Acc: 0.0457, Val F1: 0.0040
+2025-10-29 09:07:15,482 - src.models.trainer - INFO - Epoch 2/50
+2025-10-29 09:07:24,610 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:07:33,596 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:07:42,501 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:07:51,284 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:10:11,415 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:10:20,483 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:10:30,782 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:10:39,599 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:10:55,240 - src.models.trainer - INFO - Train Loss: 3.1715, Val Loss: 3.1586, Val Acc: 0.0591, Val F1: 0.0174
+2025-10-29 09:10:55,240 - src.models.trainer - INFO - Epoch 3/50
+2025-10-29 09:11:04,278 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:11:12,967 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:11:21,265 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:11:30,227 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:13:47,114 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:13:55,314 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:14:03,680 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:14:11,948 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:14:28,000 - src.models.trainer - INFO - Train Loss: 3.0882, Val Loss: 2.9018, Val Acc: 0.0887, Val F1: 0.0229
+2025-10-29 09:14:28,000 - src.models.trainer - INFO - Epoch 4/50
+2025-10-29 09:14:38,883 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:14:49,836 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:14:59,736 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:15:08,428 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:17:25,279 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:17:33,647 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:17:41,544 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:17:49,382 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:18:04,338 - src.models.trainer - INFO - Train Loss: 2.7184, Val Loss: 2.4979, Val Acc: 0.2285, Val F1: 0.1372
+2025-10-29 09:18:04,338 - src.models.trainer - INFO - Epoch 5/50
+2025-10-29 09:18:13,039 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:18:21,557 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:18:30,471 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:18:38,918 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:20:57,654 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:21:06,312 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:21:15,105 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:21:23,741 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:21:38,415 - src.models.trainer - INFO - Train Loss: 2.3308, Val Loss: 2.0749, Val Acc: 0.2984, Val F1: 0.1785
+2025-10-29 09:21:38,418 - src.models.trainer - INFO - Epoch 6/50
+2025-10-29 09:21:46,453 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:21:54,786 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:22:03,175 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:22:11,550 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:24:25,146 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:24:31,928 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:24:38,860 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:24:46,462 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:25:00,013 - src.models.trainer - INFO - Train Loss: 1.9963, Val Loss: 1.8065, Val Acc: 0.5215, Val F1: 0.4486
+2025-10-29 09:25:00,013 - src.models.trainer - INFO - Epoch 7/50
+2025-10-29 09:25:07,630 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:25:14,350 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:25:21,332 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:25:28,115 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:27:38,111 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:27:44,876 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:27:51,793 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:27:58,496 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:28:11,961 - src.models.trainer - INFO - Train Loss: 1.7315, Val Loss: 1.6172, Val Acc: 0.6237, Val F1: 0.5922
+2025-10-29 09:28:11,961 - src.models.trainer - INFO - Epoch 8/50
+2025-10-29 09:28:18,729 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:28:25,404 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:28:32,303 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:28:39,149 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:30:48,974 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:30:56,233 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:31:03,200 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:31:09,961 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:31:23,243 - src.models.trainer - INFO - Train Loss: 1.5226, Val Loss: 1.5441, Val Acc: 0.6129, Val F1: 0.5391
+2025-10-29 09:31:23,243 - src.models.trainer - INFO - Epoch 9/50
+2025-10-29 09:31:30,078 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:31:36,851 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:31:43,678 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:31:50,271 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:33:58,707 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:34:05,373 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:34:12,382 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:34:19,175 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:34:32,168 - src.models.trainer - INFO - Train Loss: 1.3388, Val Loss: 1.3810, Val Acc: 0.7070, Val F1: 0.6661
+2025-10-29 09:34:32,168 - src.models.trainer - INFO - Epoch 10/50
+2025-10-29 09:34:38,859 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:34:45,643 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:34:52,660 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:34:59,703 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:37:33,578 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:37:40,657 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:37:47,573 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:37:54,357 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:38:07,903 - src.models.trainer - INFO - Train Loss: 1.2024, Val Loss: 1.4472, Val Acc: 0.7339, Val F1: 0.6933
+2025-10-29 09:38:07,903 - src.models.trainer - INFO - Epoch 11/50
+2025-10-29 09:38:14,827 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:38:21,743 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:38:29,045 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:38:35,847 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:40:45,524 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:40:52,621 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:40:59,621 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:41:06,476 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:41:19,580 - src.models.trainer - INFO - Train Loss: 1.0845, Val Loss: 1.4243, Val Acc: 0.7446, Val F1: 0.7108
+2025-10-29 09:41:19,580 - src.models.trainer - INFO - Epoch 12/50
+2025-10-29 09:41:26,275 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:41:33,261 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:41:40,342 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:41:47,294 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:43:57,002 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:44:04,103 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:44:11,163 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:44:18,072 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:44:31,592 - src.models.trainer - INFO - Train Loss: 0.9589, Val Loss: 1.3856, Val Acc: 0.7769, Val F1: 0.7451
+2025-10-29 09:44:31,595 - src.models.trainer - INFO - Epoch 13/50
+2025-10-29 09:44:38,425 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:44:45,307 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:44:52,175 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:44:59,027 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:47:08,403 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:47:15,352 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:47:22,403 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:47:29,372 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:47:42,480 - src.models.trainer - INFO - Train Loss: 0.8871, Val Loss: 1.4455, Val Acc: 0.7177, Val F1: 0.6877
+2025-10-29 09:47:42,480 - src.models.trainer - INFO - Epoch 14/50
+2025-10-29 09:47:49,204 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:47:56,224 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:48:03,458 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:48:10,490 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:50:20,433 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:50:27,383 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:50:34,486 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:50:41,368 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:50:54,652 - src.models.trainer - INFO - Train Loss: 0.7865, Val Loss: 1.5082, Val Acc: 0.7715, Val F1: 0.7463
+2025-10-29 09:50:54,652 - src.models.trainer - INFO - Epoch 15/50
+2025-10-29 09:51:01,632 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:51:08,620 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:51:15,720 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:51:22,854 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:53:32,565 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:53:39,584 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:53:46,517 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:53:53,340 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:54:06,472 - src.models.trainer - INFO - Train Loss: 0.7223, Val Loss: 1.5247, Val Acc: 0.7930, Val F1: 0.7758
+2025-10-29 09:54:06,476 - src.models.trainer - INFO - Epoch 16/50
+2025-10-29 09:54:13,403 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:54:20,552 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:54:27,917 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:54:35,036 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:56:44,697 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:56:51,765 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:56:59,082 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:57:06,565 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:57:19,666 - src.models.trainer - INFO - Train Loss: 0.6743, Val Loss: 1.5027, Val Acc: 0.8065, Val F1: 0.7903
+2025-10-29 09:57:19,666 - src.models.trainer - INFO - Epoch 17/50
+2025-10-29 09:57:26,449 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:57:33,300 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:57:40,268 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:57:47,154 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 09:59:58,162 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:00:04,996 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:00:12,015 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:00:19,879 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:00:34,120 - src.models.trainer - INFO - Train Loss: 0.6149, Val Loss: 1.5949, Val Acc: 0.8145, Val F1: 0.8014
+2025-10-29 10:00:34,120 - src.models.trainer - INFO - Epoch 18/50
+2025-10-29 10:00:41,602 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:00:49,425 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:00:57,223 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:01:04,633 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:03:19,824 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:03:29,198 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:03:39,374 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:03:48,944 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:04:04,985 - src.models.trainer - INFO - Train Loss: 0.5531, Val Loss: 1.7543, Val Acc: 0.8145, Val F1: 0.7983
+2025-10-29 10:04:04,985 - src.models.trainer - INFO - Epoch 19/50
+2025-10-29 10:04:14,180 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:04:24,595 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:04:36,390 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:04:46,078 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:07:03,647 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:07:13,593 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:07:23,509 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:07:33,113 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:07:48,501 - src.models.trainer - INFO - Train Loss: 0.5285, Val Loss: 1.6400, Val Acc: 0.8172, Val F1: 0.8073
+2025-10-29 10:07:48,503 - src.models.trainer - INFO - Epoch 20/50
+2025-10-29 10:07:57,024 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:08:05,660 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:08:14,286 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:08:22,649 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:10:36,543 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:10:44,126 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:10:52,271 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:10:59,869 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:11:13,677 - src.models.trainer - INFO - Train Loss: 0.4548, Val Loss: 1.7804, Val Acc: 0.8226, Val F1: 0.8115
+2025-10-29 10:11:13,677 - src.models.trainer - INFO - Epoch 21/50
+2025-10-29 10:11:21,238 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:11:28,911 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:11:36,720 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:11:44,113 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:13:54,194 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:14:01,439 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:14:09,083 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:14:16,967 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:14:31,078 - src.models.trainer - INFO - Train Loss: 0.4309, Val Loss: 1.6978, Val Acc: 0.8118, Val F1: 0.8099
+2025-10-29 10:14:31,078 - src.models.trainer - INFO - Epoch 22/50
+2025-10-29 10:14:38,608 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:14:46,385 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:14:54,048 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:15:01,594 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:17:14,422 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:17:23,713 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:17:32,680 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:17:41,043 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:17:55,292 - src.models.trainer - INFO - Train Loss: 0.3990, Val Loss: 2.0321, Val Acc: 0.8065, Val F1: 0.7934
+2025-10-29 10:17:55,292 - src.models.trainer - INFO - Epoch 23/50
+2025-10-29 10:18:02,694 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:18:10,038 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:18:17,596 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:18:25,616 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:20:37,370 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:20:45,721 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:20:53,528 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:21:00,822 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:21:14,788 - src.models.trainer - INFO - Train Loss: 0.3446, Val Loss: 2.0748, Val Acc: 0.8226, Val F1: 0.8116
+2025-10-29 10:21:14,788 - src.models.trainer - INFO - Epoch 24/50
+2025-10-29 10:21:22,593 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:21:29,871 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:21:37,020 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:21:44,384 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:23:58,604 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:24:08,791 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:24:18,748 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:24:28,072 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:24:43,696 - src.models.trainer - INFO - Train Loss: 0.3373, Val Loss: 2.2340, Val Acc: 0.8118, Val F1: 0.7977
+2025-10-29 10:24:43,696 - src.models.trainer - INFO - Epoch 25/50
+2025-10-29 10:24:53,320 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:25:02,730 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:25:12,189 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:25:21,796 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:27:40,505 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:27:48,986 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:27:57,564 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:28:05,937 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:28:20,652 - src.models.trainer - INFO - Early stopping triggered at epoch 25
+2025-10-29 10:28:29,125 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:28:37,662 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:28:47,537 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:28:56,633 - src.models.trainer - INFO - Using device: cuda
+2025-10-29 10:29:14,270 - src.models.trainer - INFO - Final results saved to c:\Users\Rayhan\Desktop\cv-screening-tool\experiments\results\hybrid_cv_model_20251029_090308
+2025-10-29 10:29:14,271 - src.models.trainer - INFO - Saving model...
+2025-10-29 10:29:15,420 - src.models.trainer - INFO - Model saved to c:\Users\Rayhan\Desktop\cv-screening-tool\models
+2025-10-29 10:29:15,421 - src.models.trainer - INFO - Training complete! Test F1: 0.8342
+2025-10-29 10:29:15,421 - src.models.trainer - INFO - Target accuracy achieved: False
+2025-10-29 10:29:15,427 - __main__ - INFO - 
+==================================================
+2025-10-29 10:29:15,427 - __main__ - INFO - STEP 3: FINAL MODEL EVALUATION
+2025-10-29 10:29:15,427 - __main__ - INFO - ==================================================
+2025-10-29 10:29:15,429 - src.models.predictor - INFO - Loading hybrid model...
+2025-10-29 10:29:19,823 - src.models.predictor - INFO - Model loaded successfully!
+2025-10-29 10:29:19,824 - src.models.predictor - INFO - Model classes: ['HR', 'DESIGNER', 'INFORMATION-TECHNOLOGY', 'TEACHER', 'ADVOCATE', 'BUSINESS-DEVELOPMENT', 'HEALTHCARE', 'FITNESS', 'AGRICULTURE', 'BPO', 'SALES', 'CONSULTANT', 'DIGITAL-MEDIA', 'AUTOMOBILE', 'CHEF', 'FINANCE', 'APPAREL', 'ENGINEERING', 'ACCOUNTANT', 'CONSTRUCTION', 'PUBLIC-RELATIONS', 'BANKING', 'ARTS', 'AVIATION']
+2025-10-29 10:29:19,824 - src.models.predictor - INFO - Feature weights: {'bert_weight': 0.3078095316886902, 'cnn_weight': 0.24023427069187164, 'lstm_weight': 0.2426908016204834, 'traditional_weight': 0.20926539599895477}
+2025-10-29 10:29:19,824 - __main__ - INFO - 
+==================================================
+2025-10-29 10:29:19,824 - __main__ - INFO - STEP 4: GENERATING EVALUATION REPORT
+2025-10-29 10:29:19,824 - __main__ - INFO - ==================================================
+2025-10-29 10:29:20,662 - src.data.data_processor - INFO - Loading processed data...
+2025-10-29 10:29:21,253 - src.data.data_processor - INFO - Processed data loaded successfully
+2025-10-29 10:29:21,253 - src.data.data_processor - INFO - Creating training data splits...
+2025-10-29 10:29:21,258 - src.data.data_processor - INFO - Training samples: 1738
+2025-10-29 10:29:21,258 - src.data.data_processor - INFO - Validation samples: 372
+2025-10-29 10:29:21,258 - src.data.data_processor - INFO - Test samples: 373
+2025-10-29 10:29:21,260 - src.models.predictor - INFO - Generating evaluation report...
+2025-10-29 10:29:21,260 - src.models.predictor - INFO - Evaluating model...
+2025-10-29 10:29:42,709 - src.models.predictor - INFO - Evaluation complete:
+2025-10-29 10:29:42,709 - src.models.predictor - INFO - Accuracy: 0.8418
+2025-10-29 10:29:42,709 - src.models.predictor - INFO - Precision: 0.8382
+2025-10-29 10:29:42,709 - src.models.predictor - INFO - Recall: 0.8418
+2025-10-29 10:29:42,709 - src.models.predictor - INFO - F1: 0.8342
+2025-10-29 10:29:42,710 - src.models.predictor - INFO - Target achieved: False
+2025-10-29 10:29:42,710 - src.models.predictor - INFO - Performing 5-fold cross-validation...
+2025-10-29 10:29:42,711 - src.models.predictor - INFO - Fold 1/5
+2025-10-29 10:29:42,711 - src.models.predictor - INFO - Evaluating model...
+2025-10-29 10:29:47,092 - src.models.predictor - INFO - Evaluation complete:
+2025-10-29 10:29:47,093 - src.models.predictor - INFO - Accuracy: 0.8800
+2025-10-29 10:29:47,093 - src.models.predictor - INFO - Precision: 0.8798
+2025-10-29 10:29:47,093 - src.models.predictor - INFO - Recall: 0.8800
+2025-10-29 10:29:47,093 - src.models.predictor - INFO - F1: 0.8668
+2025-10-29 10:29:47,093 - src.models.predictor - INFO - Target achieved: False
+2025-10-29 10:29:47,093 - src.models.predictor - INFO - Fold 2/5
+2025-10-29 10:29:47,093 - src.models.predictor - INFO - Evaluating model...
+2025-10-29 10:29:51,410 - src.models.predictor - INFO - Evaluation complete:
+2025-10-29 10:29:51,410 - src.models.predictor - INFO - Accuracy: 0.8533
+2025-10-29 10:29:51,410 - src.models.predictor - INFO - Precision: 0.8802
+2025-10-29 10:29:51,411 - src.models.predictor - INFO - Recall: 0.8533
+2025-10-29 10:29:51,411 - src.models.predictor - INFO - F1: 0.8418
+2025-10-29 10:29:51,411 - src.models.predictor - INFO - Target achieved: False
+2025-10-29 10:29:51,411 - src.models.predictor - INFO - Fold 3/5
+2025-10-29 10:29:51,411 - src.models.predictor - INFO - Evaluating model...
+2025-10-29 10:29:55,709 - src.models.predictor - INFO - Evaluation complete:
+2025-10-29 10:29:55,709 - src.models.predictor - INFO - Accuracy: 0.8133
+2025-10-29 10:29:55,709 - src.models.predictor - INFO - Precision: 0.8067
+2025-10-29 10:29:55,709 - src.models.predictor - INFO - Recall: 0.8133
+2025-10-29 10:29:55,710 - src.models.predictor - INFO - F1: 0.7964
+2025-10-29 10:29:55,710 - src.models.predictor - INFO - Target achieved: False
+2025-10-29 10:29:55,710 - src.models.predictor - INFO - Fold 4/5
+2025-10-29 10:29:55,710 - src.models.predictor - INFO - Evaluating model...
+2025-10-29 10:30:00,109 - src.models.predictor - INFO - Evaluation complete:
+2025-10-29 10:30:00,109 - src.models.predictor - INFO - Accuracy: 0.8243
+2025-10-29 10:30:00,110 - src.models.predictor - INFO - Precision: 0.8182
+2025-10-29 10:30:00,110 - src.models.predictor - INFO - Recall: 0.8243
+2025-10-29 10:30:00,110 - src.models.predictor - INFO - F1: 0.8040
+2025-10-29 10:30:00,110 - src.models.predictor - INFO - Target achieved: False
+2025-10-29 10:30:00,110 - src.models.predictor - INFO - Fold 5/5
+2025-10-29 10:30:00,110 - src.models.predictor - INFO - Evaluating model...
+2025-10-29 10:30:04,443 - src.models.predictor - INFO - Evaluation complete:
+2025-10-29 10:30:04,443 - src.models.predictor - INFO - Accuracy: 0.8378
+2025-10-29 10:30:04,443 - src.models.predictor - INFO - Precision: 0.8764
+2025-10-29 10:30:04,443 - src.models.predictor - INFO - Recall: 0.8378
+2025-10-29 10:30:04,443 - src.models.predictor - INFO - F1: 0.8320
+2025-10-29 10:30:04,443 - src.models.predictor - INFO - Target achieved: False
+2025-10-29 10:30:04,445 - src.models.predictor - INFO - Cross-validation complete:
+2025-10-29 10:30:04,445 - src.models.predictor - INFO - Accuracy: 0.8418 � 0.0233
+2025-10-29 10:30:04,445 - src.models.predictor - INFO - Precision: 0.8523 � 0.0327
+2025-10-29 10:30:04,445 - src.models.predictor - INFO - Recall: 0.8418 � 0.0233
+2025-10-29 10:30:04,445 - src.models.predictor - INFO - F1: 0.8282 � 0.0256
+2025-10-29 10:30:04,495 - src.models.predictor - INFO - Evaluation report saved to c:\Users\Rayhan\Desktop\cv-screening-tool\experiments\results\hybrid_cv_model_20251029_090308_evaluation_report.json
+2025-10-29 10:30:04,496 - __main__ - INFO - 
+==================================================
+2025-10-29 10:30:04,496 - __main__ - INFO - STEP 5: PERFORMANCE ASSESSMENT
+2025-10-29 10:30:04,496 - __main__ - INFO - ==================================================
+2025-10-29 10:30:04,497 - __main__ - INFO - Final Test Accuracy: 0.8418 (84.18%)
+2025-10-29 10:30:04,497 - __main__ - INFO - Final Test F1: 0.8342
+2025-10-29 10:30:04,497 - __main__ - INFO - Target Accuracy (95.0%): [NOT ACHIEVED]
+2025-10-29 10:30:04,497 - __main__ - INFO - 
+Learned Feature Weights:
+2025-10-29 10:30:04,499 - __main__ - INFO -   bert_weight: 0.3078
+2025-10-29 10:30:04,499 - __main__ - INFO -   cnn_weight: 0.2402
+2025-10-29 10:30:04,499 - __main__ - INFO -   lstm_weight: 0.2427
+2025-10-29 10:30:04,499 - __main__ - INFO -   traditional_weight: 0.2093
+2025-10-29 10:30:04,499 - __main__ - INFO - 
+==================================================
+2025-10-29 10:30:04,500 - __main__ - INFO - STEP 6: SAVING RESULTS SUMMARY
+2025-10-29 10:30:04,500 - __main__ - INFO - ==================================================
+2025-10-29 10:30:04,501 - __main__ - INFO - Final summary saved to: c:\Users\Rayhan\Desktop\cv-screening-tool\experiments\results\hybrid_cv_model_20251029_090308_final_summary.json
+2025-10-29 10:30:04,501 - __main__ - INFO - 
+==================================================
+2025-10-29 10:30:04,501 - __main__ - INFO - STEP 7: MODEL DEMONSTRATION
+2025-10-29 10:30:04,502 - __main__ - INFO - ==================================================
+2025-10-29 10:30:04,502 - __main__ - INFO - Demonstrating CV-Job matching...
+2025-10-29 10:30:04,502 - __main__ - INFO - Sample CV (first 100 chars): 
+        Senior Software Engineer with 8 years of experience in Python, Java, and machine learning.
+...
+2025-10-29 10:30:04,502 - __main__ - INFO - Sample Job (first 100 chars): 
+        We are seeking a Senior Machine Learning Engineer with 5+ years of experience.
+        Must...
+2025-10-29 10:30:04,842 - __main__ - INFO - Match Result:
+2025-10-29 10:30:04,842 - __main__ - INFO -   Similarity Score: 0.0576
+2025-10-29 10:30:04,842 - __main__ - INFO -   Is Match: False
+2025-10-29 10:30:04,842 - __main__ - INFO -   CV Category: INFORMATION-TECHNOLOGY
+2025-10-29 10:30:04,843 - __main__ - INFO -   Job Category: ARTS
+2025-10-29 10:30:04,843 - __main__ - INFO -   Experience Years: 0
+2025-10-29 10:30:04,843 - __main__ - INFO - 
+================================================================================
+2025-10-29 10:30:04,843 - __main__ - INFO - TRAINING COMPLETED BUT TARGET NOT FULLY ACHIEVED
+2025-10-29 10:30:04,843 - __main__ - INFO - [RESULT] Achieved 84.18% accuracy (target: 95.0%)
+2025-10-29 10:30:04,844 - __main__ - INFO - [INFO] Consider adjusting hyperparameters or increasing training data
+2025-10-29 10:30:04,844 - __main__ - INFO - ================================================================================
+
+
+PS C:\Users\Rayhan\Desktop\cv-screening-tool> python analyze_training.py
+📂 Reading log file: experiments\logs\training.log
+✅ Found data for 58 epochs
+✅ Plot saved to: training_analysis.png
+
+================================================================================
+📊 TRAINING ANALYSIS REPORT
+================================================================================
+
+📈 Training Statistics:
+  Total Epochs: 58
+  Initial Train Loss: 3.1794
+  Final Train Loss: 0.3373
+  Loss Reduction: 89.4%
+
+📉 Validation Performance:
+  Best Val Loss: 1.1123 (Epoch 9)
+  Final Val Loss: 2.2340
+  Best Val Accuracy: 0.8468 (84.68%)
+  Final Val Accuracy: 0.8118 (81.18%)
+  Best Val F1: 0.8408
+
+⚠️  Overfitting Analysis:
+  ⚠️ Validation loss increased by 100.8% after epoch 9
+
+📊 Train/Val Loss Gap:
+  Final Gap: 1.8967
+  Final Gap: 1.8967
+  Status: 🟡 MODERATE OVERFITTING
+
+💡 Recommendations:
+
+================================================================================
+
+📋 Training Data Summary:
+          epochs  train_loss   val_loss    val_acc     val_f1
+count  58.000000   58.000000  58.000000  58.000000  58.000000
+mean   15.431034    0.867350   2.318712   0.699762   0.674490
+std     9.151957    0.999496   0.818146   0.232777   0.253643
+min     1.000000    0.014800   1.112300   0.045700   0.004000
+25%     8.000000    0.099225   1.600475   0.717700   0.679150
+50%    15.000000    0.442850   2.074850   0.811800   0.799100
+75%    22.000000    1.255425   3.171875   0.824625   0.817100
+max    34.000000    3.179400   3.710000   0.846800   0.840800
+
+💾 Data saved to: experiments/logs/training_metrics.csv
