@@ -14,7 +14,7 @@ Figure~\ref{fig:training_curves} presents the training and validation learning c
 \label{fig:training_curves}
 \end{figure}
 
-The loss curves demonstrate smooth convergence over 12 epochs, with training and validation losses decreasing from 3.18 to 0.70 and 1.04 respectively. The final loss gap of 0.379 indicates effective learning without significant overfitting. Accuracy curves show parallel progression, reaching 85.25\% test accuracy with rapid validation improvement in epochs 5-9. The overfitting indicator reveals a final accuracy gap of -0.003, well within the 5\% threshold, confirming robust generalization. All metrics (precision, recall, F1-score) converge above 0.80, demonstrating balanced performance between false positives and false negatives.
+The loss curves demonstrate smooth convergence over 12 epochs, with training and validation losses decreasing from 3.18 to 0.70 and 1.04 respectively. The final loss gap of 0.379 indicates effective learning without significant overfitting. Accuracy curves show parallel progression, reaching 85.25\% test accuracy with rapid validation improvement in epochs 5-9. The overfitting indicator reveals a final accuracy gap of -0.003, well within the 5\% threshold, confirming generalization. All metrics (precision, recall, F1-score) converge above 0.80, demonstrating balanced performance between false positives and false negatives.
 
 \subsection{Classification Performance Analysis}
 
@@ -53,7 +53,7 @@ Figure~\ref{fig:precision_recall} shows precision-recall dynamics during trainin
 \label{fig:precision_recall}
 \end{figure}
 
-The metrics demonstrate synchronized improvement, with precision and recall reaching 0.81 by epoch 12. The trajectory shows steady progression from low initial performance to high final performance (0.82 recall, 0.81 precision), indicating balanced optimization without sacrificing either metric. Recall exhibits slightly faster early improvement, suggesting the model learns to identify positive cases broadly before refining classification boundaries.
+The metrics demonstrate synchronized improvement, with precision and recall reaching 0.81. The trajectory shows steady progression from low initial performance to high final performance (0.82 recall, 0.81 precision), indicating balanced optimization without sacrificing either metric. Recall exhibits slightly faster early improvement, suggesting the model learns to identify positive cases broadly before refining classification boundaries.
 
 \subsection{Overall Performance Summary}
 
@@ -70,10 +70,15 @@ The model achieved 85.25\% accuracy, 85.46\% precision, 85.25\% recall, and 84.5
 
 \subsection{Key Findings}
 
-The experimental results demonstrate several key achievements: (1) \textbf{Strong Generalization}: 85.25\% test accuracy with train-validation gap of -0.003, confirming no overfitting; (2) \textbf{Balanced Performance}: Precision (85.46\%) and recall (85.25\%) are nearly identical, avoiding bias toward false positives or negatives; (3) \textbf{Effective Fusion}: Traditional ML contribution increased from 10\% to 21.1\%, validating the hybrid approach; (4) \textbf{Robust Performance}: 16/24 categories achieved F1-scores above 0.80 with median 0.889; (5) \textbf{Efficient Training}: Convergence within 12 epochs with early stopping.
+The experimental results demonstrate several key achievements:
+\begin{enumerate}
+    \item\textbf{Strong Generalization}: 85.25\% test accuracy with train-validation gap of -0.003
+    \item\textbf{Balanced Performance}: Precision (85.46\%) and recall (85.25\%) are nearly identical, avoiding bias toward false positives or negatives
+    \item\textbf{Effective Fusion}: Traditional ML contribution increased from 10\% to 21.1\%, validating the hybrid approach
+    \item\textbf{Robust Performance}: 16/24 categories achieved F1-scores above 0.80 with median 0.889
+\end{enumerate}
 
-These results validate that combining BERT, CNN, LSTM with traditional ML features yields superior performance for automated resume screening, with balanced metrics and minimal overfitting indicating production-ready quality.
-
+These results validate that combining BERT, CNN, LSTM with traditional ML features yields superior performance for automated resume screening, with balanced metrics production-ready quality.
 ---
 
 \begin{thebibliography}{99}
