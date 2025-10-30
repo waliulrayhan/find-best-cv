@@ -1,0 +1,324 @@
+================================================================================
+                    CV SCREENING SYSTEM - COMPLETE ARCHITECTURE
+================================================================================
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                        1. DATA INPUT & PREPROCESSING                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+   INPUT FILES (PDF/DOCX)
+        │
+        ├─► Job Description
+        └─► Multiple CV Files
+              │
+              ▼
+   ┌─────────────────────────┐
+   │  Text Extraction        │
+   │  • PyMuPDF (PDF)        │
+   │  • python-docx (DOCX)   │
+   └───────────┬─────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Text Cleaning & Normalization          │
+   │  • Lowercase conversion                 │
+   │  • Special character removal            │
+   │  • URL & email extraction               │
+   │  • Whitespace normalization             │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  NLP Processing (NLTK)                  │
+   │  • Tokenization (word_tokenize)         │
+   │  • Stopword removal                     │
+   │  • Lemmatization (WordNetLemmatizer)    │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Feature Extraction                     │
+   │  • TF-IDF Vectorization                 │
+   │  • Skill pattern matching               │
+   │  • Label Encoding (categories)          │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Data Split                             │
+   │  • Train: 80%                           │
+   │  • Test: 20%                            │
+   │  • Stratified sampling                  │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                      2. HYBRID MODEL ARCHITECTURE                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+   TOKENIZED INPUT
+        │
+        ├──────────────────┬──────────────────┬──────────────────┐
+        │                  │                  │                  │
+        ▼                  ▼                  ▼                  ▼
+   
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   BERT      │    │    CNN      │    │    LSTM     │    │  TF-IDF     │
+│ Component   │    │ Component   │    │ Component   │    │  Features   │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ BERT Component (Semantic Understanding)                                     │
+│ • Model: distilbert-base-uncased                                            │
+│ • Layers: Transformer (6 layers)                                            │
+│ • Output: 768-dim → 384-dim → 192-dim                                       │
+│ • Dropout: 0.3                                                               │
+│ • Purpose: Contextual semantic embeddings                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ CNN Component (Local Pattern Recognition)                                   │
+│ • Embedding: vocab_size → 128-dim                                           │
+│ • Filters: [100, 100, 100]                                                   │
+│ • Kernel sizes: [3, 4, 5] (n-gram patterns)                                 │
+│ • Max pooling: Global max                                                    │
+│ • Output: 300-dim → 150-dim                                                  │
+│ • Dropout: 0.3                                                               │
+│ • Purpose: Capture skill keywords & phrases                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ LSTM Component (Sequential Pattern Recognition)                             │
+│ • Embedding: vocab_size → 128-dim                                           │
+│ • Type: Bidirectional LSTM                                                   │
+│ • Hidden size: 128 (256 bidirectional)                                       │
+│ • Layers: 2                                                                  │
+│ • Attention: Self-attention mechanism                                        │
+│ • Output: 256-dim → 128-dim                                                  │
+│ • Dropout: 0.3                                                               │
+│ • Purpose: Sequential dependencies & context                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+        │                  │                  │                  │
+        └──────────────────┴──────────────────┴──────────────────┘
+                                    │
+                                    ▼
+                        ┌───────────────────────┐
+                        │  Feature Fusion       │
+                        │  • Concatenation      │
+                        │  • Combined: 470-dim  │
+                        └───────────┬───────────┘
+                                    │
+                                    ▼
+                        ┌───────────────────────┐
+                        │  Fusion Layers        │
+                        │  • FC: 470 → 256      │
+                        │  • BatchNorm + ReLU   │
+                        │  • Dropout: 0.3       │
+                        │  • FC: 256 → 128      │
+                        │  • BatchNorm + ReLU   │
+                        │  • Dropout: 0.2       │
+                        └───────────┬───────────┘
+                                    │
+                                    ▼
+                        ┌───────────────────────┐
+                        │  Classification Head  │
+                        │  • FC: 128 → num_classes │
+                        │  • Softmax activation │
+                        └───────────┬───────────┘
+                                    │
+                                    ▼
+                              CLASS PREDICTION
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                    3. TRAINING & OPTIMIZATION                                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+   ┌─────────────────────────────────────────┐
+   │  Training Configuration                 │
+   │  • Optimizer: AdamW                     │
+   │  • Learning rate: 2e-5                  │
+   │  • Weight decay: 0.01                   │
+   │  • Loss: CrossEntropyLoss               │
+   │  • Batch size: 16                       │
+   │  • Max epochs: 10                       │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Regularization Techniques              │
+   │  • Dropout: 0.2-0.3                     │
+   │  • L2 regularization (weight decay)     │
+   │  • Batch normalization                  │
+   │  • Early stopping (patience: 3)         │
+   │  • Gradient clipping (max_norm: 1.0)    │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Learning Rate Scheduling               │
+   │  • ReduceLROnPlateau                    │
+   │  • Monitor: validation loss             │
+   │  • Factor: 0.5                          │
+   │  • Patience: 2 epochs                   │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Model Checkpointing                    │
+   │  • Save best model (val accuracy)       │
+   │  • Save metadata (config, metrics)      │
+   │  • PyTorch .pth format                  │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                      4. INFERENCE & DEPLOYMENT                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+   ┌─────────────────────────────────────────┐
+   │  Backend API (FastAPI)                  │
+   │  • Endpoint: /match-cvs                 │
+   │  • File upload: PDF/DOCX                │
+   │  • CORS enabled                         │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Model Loading                          │
+   │  • Load PyTorch model (.pth)            │
+   │  • Load tokenizer                       │
+   │  • Load metadata                        │
+   │  • Device: CPU/GPU auto-detect          │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Batch Inference                        │
+   │  • Preprocess input                     │
+   │  • Tokenize text                        │
+   │  • Forward pass (no gradient)           │
+   │  • Softmax probabilities                │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Similarity Computation                 │
+   │  • TF-IDF vectorization                 │
+   │  • Cosine similarity                    │
+   │  • Keyword matching                     │
+   │  • Weighted scoring                     │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Ranking & Filtering                    │
+   │  • Sort by match score                  │
+   │  • Top-N selection                      │
+   │  • Threshold filtering                  │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Containerization (Docker)              │
+   │  • Backend: Python + FastAPI            │
+   │  • Frontend: Node.js + Next.js          │
+   │  • Docker Compose orchestration         │
+   │  • Port mapping: 8000, 3000             │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                        5. OUTPUT & RESULTS                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+   ┌─────────────────────────────────────────┐
+   │  Prediction Output                      │
+   │  • Category classification              │
+   │  • Confidence scores                    │
+   │  • Class probabilities                  │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Matching Results                       │
+   │  • CV filename                          │
+   │  • Match score (0-100%)                 │
+   │  • Similarity percentage                │
+   │  • Matching keywords                    │
+   │  • Ranked list                          │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Evaluation Metrics                     │
+   │  • Accuracy: Train & Validation         │
+   │  • Loss: Train & Validation             │
+   │  • Precision, Recall, F1-score          │
+   │  • Confusion matrix                     │
+   │  • Per-class metrics                    │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Visualization & Reports                │
+   │  • Training curves (loss, accuracy)     │
+   │  • Confusion matrix heatmap             │
+   │  • Classification report                │
+   │  • JSON evaluation report               │
+   │  • Experiment logs                      │
+   └───────────┬─────────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────────────────────────┐
+   │  Frontend Display (React/Next.js)       │
+   │  • Upload interface                     │
+   │  • Results table                        │
+   │  • Match percentage visualization       │
+   │  • Download results                     │
+   └───────────┴─────────────────────────────┘
+
+
+================================================================================
+                              KEY TECHNIQUES SUMMARY
+================================================================================
+
+PREPROCESSING:
+  ✓ Text extraction (PyMuPDF, python-docx)
+  ✓ NLP processing (NLTK - tokenization, lemmatization, stopword removal)
+  ✓ TF-IDF vectorization (feature extraction)
+
+MODEL ARCHITECTURE:
+  ✓ BERT (distilbert-base-uncased) - semantic understanding
+  ✓ CNN (multi-kernel) - local pattern recognition
+  ✓ BiLSTM + Attention - sequential dependencies
+  ✓ Feature fusion - concatenation of all components
+
+TRAINING:
+  ✓ AdamW optimizer with weight decay
+  ✓ CrossEntropyLoss for multi-class classification
+  ✓ Early stopping & learning rate scheduling
+  ✓ Dropout, batch normalization, gradient clipping
+
+DEPLOYMENT:
+  ✓ FastAPI backend - RESTful API
+  ✓ Next.js frontend - modern React framework
+  ✓ Docker containerization - portable deployment
+  ✓ Cosine similarity - CV-JD matching
+
+EVALUATION:
+  ✓ Accuracy, Precision, Recall, F1-score
+  ✓ Confusion matrix analysis
+  ✓ Training/validation curves
+  ✓ Per-class performance metrics
+
+================================================================================
+                                  END OF DIAGRAM
+================================================================================
