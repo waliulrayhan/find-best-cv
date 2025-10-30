@@ -78,8 +78,8 @@ def plot_training_validation_curves():
     epochs = list(range(1, len(metrics['train_loss']) + 1))
     
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-    fig.suptitle('Training and Validation Learning Curves - Overfitting Analysis', 
-                 fontsize=14, fontweight='bold', y=0.995)
+    # fig.suptitle('Training and Validation Learning Curves - Overfitting Analysis', 
+                #  fontsize=14, fontweight='bold', y=0.995)
     
     # Plot 1: Loss curves
     ax1 = axes[0, 0]
@@ -186,7 +186,7 @@ def plot_confusion_matrix():
            xlabel='Predicted Category',
            ylabel='True Category')
     
-    ax.set_title('Confusion Matrix - Test Set Performance', fontsize=14, fontweight='bold', pad=20)
+    # ax.set_title('Confusion Matrix - Test Set Performance', fontsize=14, fontweight='bold', pad=20)
     
     # Rotate x labels
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
@@ -305,7 +305,7 @@ def plot_model_architecture_weights():
                learned_weights['lstm_weight'], learned_weights['traditional_weight']]
     
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
-    fig.suptitle('Hybrid Model Component Weights: Initial vs Learned', fontsize=14, fontweight='bold')
+    # fig.suptitle('Hybrid Model Component Weights: Initial vs Learned', fontsize=14, fontweight='bold')
     
     # Plot 1: Grouped bar chart
     x = np.arange(len(components))
@@ -494,7 +494,7 @@ def plot_precision_recall_curves():
     epochs = list(range(1, len(metrics['val_precision']) + 1))
     
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
-    fig.suptitle('Precision-Recall Analysis During Training', fontsize=14, fontweight='bold')
+    # fig.suptitle('Precision-Recall Analysis During Training', fontsize=14, fontweight='bold')
     
     # Plot 1: Precision and Recall over epochs
     ax1.plot(epochs, metrics['val_precision'], 'b-', linewidth=2, marker='o', markersize=4, label='Precision')
@@ -641,7 +641,7 @@ def plot_performance_summary():
     recall_scores = [per_class[c]['recall'] for c in per_class.keys()]
     
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-    fig.suptitle('Overall Model Performance Summary', fontsize=14, fontweight='bold')
+    # fig.suptitle('Overall Model Performance Summary', fontsize=14, fontweight='bold')
     
     # Plot 1: Overall metrics bar chart
     ax1 = axes[0, 0]
