@@ -68,6 +68,28 @@ Figure~\ref{fig:performance_summary} provides a comprehensive performance overvi
 
 The model achieved 85.25\% accuracy, 85.46\% precision, 85.25\% recall, and 84.56\% F1-score, all exceeding the 80\% target threshold. The per-class F1-score distribution shows strong performance with mean 0.780 and median 0.889, where 16 out of 24 categories achieve F1-scores above 0.80. The box plot analysis shows tight interquartile ranges (medians 0.80-0.85) with minimal outliers, while the radar chart confirms balanced capabilities across all evaluation dimensions.
 
+\subsection{Production Deployment and Web Interface}
+
+The system has been deployed as a production-ready web application at \url{https://cv-matcher-phi.vercel.app}, demonstrating practical applicability in real-world recruitment scenarios.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{Figures/web_interface_upload.png}
+\caption{Web Interface - File Upload Page}
+\label{fig:web_upload}
+\end{figure}
+
+Figure~\ref{fig:web_upload} shows the upload interface where recruiters can upload job descriptions and multiple CV files (PDF/DOCX, max 10MB each) with drag-and-drop functionality.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{Figures/web_interface_results.png}
+\caption{CV Matching Results with Ranked Candidates}
+\label{fig:web_results}
+\end{figure}
+
+Figure~\ref{fig:web_results} displays ranked candidates with match scores (32\%-62\%), matched keywords, and color-coded ratings (green/yellow/orange) for immediate visual feedback. The deployment uses Vercel's edge network, FastAPI backend, and Next.js frontend for scalable real-world recruitment automation.
+
 \subsection{Key Findings}
 
 The experimental results demonstrate several key achievements:
@@ -76,9 +98,10 @@ The experimental results demonstrate several key achievements:
     \item\textbf{Balanced Performance}: Precision (85.46\%) and recall (85.25\%) are nearly identical, avoiding bias toward false positives or negatives
     \item\textbf{Effective Fusion}: Traditional ML contribution increased from 10\% to 21.1\%, validating the hybrid approach
     \item\textbf{Robust Performance}: 16/24 categories achieved F1-scores above 0.80 with median 0.889
+    \item\textbf{Production Viability}: Successfully deployed at \url{https://cv-matcher-phi.vercel.app}, processing real-world recruitment requests with intuitive web interface
 \end{enumerate}
 
-These results validate that combining BERT, CNN, LSTM with traditional ML features yields superior performance for automated resume screening, with balanced metrics production-ready quality.
+These results validate that combining BERT, CNN, LSTM with traditional ML features yields superior performance for automated resume screening, with balanced metrics and production-ready quality.
 ---
 
 \begin{thebibliography}{99}
